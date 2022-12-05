@@ -27,7 +27,7 @@ const Vacations = () => {
     city.fields.title.toLowerCase().includes(inputQuery.toLowerCase())
   );
 
-  console.log(inputData);
+  console.log(inputData, "Data from array of objects");
 
   const setFilterDateAscending = () => {
     if (inputData && inputData.length) {
