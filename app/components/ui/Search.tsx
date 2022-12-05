@@ -4,7 +4,12 @@ import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
-export default function InputWithIcon({ inputQuery, setInputQuery }) {
+interface Props {
+  inputQuery: string;
+  setInputQuery: (event: string) => void;
+}
+
+const InputWithIcon: React.FC<Props> = ({ inputQuery, setInputQuery }) => {
   return (
     <Box sx={{ "& > :not(style)": { m: 1 } }}>
       <Input
@@ -23,4 +28,6 @@ export default function InputWithIcon({ inputQuery, setInputQuery }) {
       />
     </Box>
   );
-}
+};
+
+export default InputWithIcon;
