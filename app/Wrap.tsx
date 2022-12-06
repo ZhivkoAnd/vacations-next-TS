@@ -5,7 +5,11 @@ import Navigation from "./components/ui/Navigation";
 import Footer from "./components/ui/Footer";
 import { useState } from "react";
 
-const Wrap = ({ children }) => {
+interface Props {
+  children: any;
+}
+
+const Wrap = ({ children }: Props) => {
   const [colorMode, setColorMode] = useState("dark");
 
   const lightMode = () => {

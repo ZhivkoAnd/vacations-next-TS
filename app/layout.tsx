@@ -8,7 +8,11 @@ import "../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
 import Wrap from "./Wrap";
 import { Providers } from "./Providers";
 
-export default function RootLayout({ children }) {
+interface Props {
+  children: any;
+}
+
+export default function RootLayout({ children }: Props) {
   return (
     <html>
       <head />

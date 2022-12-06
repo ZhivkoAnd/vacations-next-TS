@@ -24,11 +24,16 @@ const pages = [
   },
 ];
 
-function ResponsiveAppBar({ lightMode, darkMode }) {
+interface Props {
+  lightMode: React.MouseEventHandler<SVGSVGElement>;
+  darkMode: React.MouseEventHandler<SVGSVGElement>;
+}
+
+const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenNavMenu = (e: any) => {
+    setAnchorElNav(e.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
@@ -99,5 +104,5 @@ function ResponsiveAppBar({ lightMode, darkMode }) {
       </Container>
     </AppBar>
   );
-}
+};
 export default ResponsiveAppBar;
