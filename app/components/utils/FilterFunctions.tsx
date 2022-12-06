@@ -1,14 +1,8 @@
 interface Data {
   fields: {
-    date: number;
+    date: string;
   };
 }
-
-// export const filterDateAscending = (arr) => {
-//   return [...arr].sort((a, b) => {
-//     return Number(a.fields.date) - Number(b.fields.date);
-//   });
-// };
 
 export const filterDateAscending = (arr: Data[]) => {
   return [...arr].sort((a, b) => {

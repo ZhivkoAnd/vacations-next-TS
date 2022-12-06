@@ -2,7 +2,14 @@ import React from "react";
 import Search from "./Search";
 import Filters from "./Filters";
 
-const ActionBar = ({
+interface Props {
+  inputQuery : string,
+  setInputQuery: () => void,
+  setFilterDateAscending: () => void,
+  setFilterDateDescending: () => void
+}
+
+const ActionBar: React.FC<Props> = ({
   inputQuery,
   setInputQuery,
   setFilterDateAscending,

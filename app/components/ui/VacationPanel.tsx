@@ -2,7 +2,28 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const VacationPanel = ({ item }) => {
+interface Props {
+  item: {fields: {
+    thumbnail: {
+      fields: {
+        file : {
+          url: string
+          details: {
+            image: {
+              width: number
+              height: number
+            }
+          }
+        }
+      }
+    }
+    date: string
+    title: string
+    slug: string
+  }}
+}
+
+const VacationPanel:React.FC<Props> = ({ item }) => {
   return (
     <div className="vacation-panel">
       <Image
