@@ -6,13 +6,19 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useState } from "react";
 
-export default function BasicSelect({
+
+interface Props {
+  setFilterDateAscending: () => void,
+  setFilterDateDescending: () => void
+}
+
+const BasicSelect = ({
   setFilterDateAscending,
   setFilterDateDescending,
-}) {
+} : Props) => {
   const [sort, setSort] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setSort(e.target.value);
   };
 
@@ -41,3 +47,5 @@ export default function BasicSelect({
     </Box>
   );
 }
+
+export default BasicSelect

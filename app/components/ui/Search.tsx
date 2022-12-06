@@ -9,7 +9,7 @@ interface Props {
   setInputQuery: (event: string) => void;
 }
 
-const InputWithIcon: React.FC<Props> = ({ inputQuery, setInputQuery }) => {
+const InputWithIcon = ({ inputQuery, setInputQuery } : Props) => {
   return (
     <Box sx={{ "& > :not(style)": { m: 1 } }}>
       <Input
