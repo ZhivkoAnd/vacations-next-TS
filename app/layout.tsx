@@ -9,7 +9,7 @@ import Wrap from "./Wrap";
 import { Providers } from "./Providers";
 
 interface Props {
-  children: JSX.Element | null;
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: Props) {

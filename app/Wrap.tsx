@@ -6,7 +6,7 @@ import Footer from "./components/ui/Footer";
 import { useState } from "react";
 
 interface Props {
-  children: JSX.Element | null;
+  children: React.ReactNode;
 }
 
 const Wrap = ({ children }: Props) => {
