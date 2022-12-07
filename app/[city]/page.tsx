@@ -3,11 +3,14 @@ import React from "react";
 import { fetchVacationsServer } from "../components/utils/FetchQueryServer";
 import ImagesGallery from "./ImagesGallery";
 
-const Gallery = async ({ params: { city } }) => {
+const Gallery = async ({ params: { city } }: any) => {
   const vacations = await fetchVacationsServer();
-  const vacation = vacations.items.find((item) => item.fields.slug === city);
+  console.log(vacations);
+  const vacation: any = vacations.items.find(
+    (item: any) => item.fields.slug === city
+  );
 
-  const images = vacation.fields.gallery.map((image) => {
+  const images = vacation.fields.gallery.map((image: any) => {
     return {
       original: `https:${image.fields.file.url}`,
       thumbnail: `https:${image.fields.file.url}`,
@@ -42,7 +45,7 @@ export default Gallery;
 export async function generateStaticParams() {
   const vacations = await fetchVacationsServer();
 
-  return vacations.items.map((item) => ({
+  return vacations.items.map((item: any) => ({
     city: item.fields.slug,
   }));
 }

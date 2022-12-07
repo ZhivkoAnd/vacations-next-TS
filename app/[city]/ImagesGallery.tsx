@@ -6,7 +6,6 @@ interface Props {
 }
 
 const ImagesGallery: React.FC<Props> = ({ images }) => {
-  console.log(images, "gallery");
   return <ImageGallery items={images} thumbnailPosition="left" />;
 };
 
