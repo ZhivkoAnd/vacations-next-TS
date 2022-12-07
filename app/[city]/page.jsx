@@ -3,25 +3,11 @@ import React from "react";
 import { fetchVacationsServer } from "../components/utils/FetchQueryServer";
 import ImagesGallery from "./ImagesGallery";
 
-interface Props {
-  params: {
-    city: string;
-  };
-}
-
-interface Image {
-  fields: {
-    file: {
-      url: string;
-    };
-  };
-}
-
-const Gallery = async ({ params: { city } }: Props) => {
+const Gallery = async ({ params: { city } }) => {
   const vacations = await fetchVacationsServer();
   const vacation = vacations.items.find((item) => item.fields.slug === city);
 
-  const images = vacation.fields.gallery.map((image: Image) => {
+  const images = vacation.fields.gallery.map((image) => {
     return {
       original: `https:${image.fields.file.url}`,
       thumbnail: `https:${image.fields.file.url}`,
