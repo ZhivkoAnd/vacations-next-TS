@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface Props {
-  children: any;
+  children: JSX.Element | null;
 }
 
 export const Providers = ({ children }: Props) => {
