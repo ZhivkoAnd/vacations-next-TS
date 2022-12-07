@@ -30,9 +30,9 @@ interface Props {
 }
 
 const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (e: any) => {
+  const handleOpenNavMenu = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(e.currentTarget);
   };
 
