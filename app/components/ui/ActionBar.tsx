@@ -3,10 +3,10 @@ import Search from "./Search";
 import Filters from "./Filters";
 
 interface Props {
-  inputQuery : string,
-  setInputQuery: () => void,
-  setFilterDateAscending: () => void,
-  setFilterDateDescending: () => void
+  inputQuery: string;
+  setInputQuery: any;
+  setFilterDateAscending: () => void;
+  setFilterDateDescending: () => void;
 }
 
 const ActionBar: React.FC<Props> = ({

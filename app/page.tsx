@@ -13,17 +13,17 @@ const Vacations = () => {
   const { data, isLoading } = fetchVacationsClient();
 
   const [inputQuery, setInputQuery] = useState("");
-  const [filteredCities, setFilteredCities] = useState(data);
+  const [filteredCities, setFilteredCities] = useState<any>(data);
   const [noVacationFound, setNoVacationFound] = useState(false);
 
-  const modifiedDateData = data?.items.map((obj) => {
+  const modifiedDateData = data?.items.map((obj: any) => {
     return {
       ...obj,
       fields: { ...obj.fields, date: new Date(obj.fields.date) },
     };
   });
 
-  const inputData = modifiedDateData?.filter((city) =>
+  const inputData: any[any] = modifiedDateData?.filter((city) =>
     city.fields.title.toLowerCase().includes(inputQuery.toLowerCase())
   );
 
@@ -68,7 +68,7 @@ const Vacations = () => {
       {noVacationFound ? <div>NOTHING HERE</div> : ""}
       {filteredCities.length ? (
         <div className="vacation-panels">
-          {filteredCities?.map((vacation) => (
+          {filteredCities?.map((vacation: any) => (
             <VacationPanel item={vacation} key={vacation.sys.id} />
           ))}
         </div>

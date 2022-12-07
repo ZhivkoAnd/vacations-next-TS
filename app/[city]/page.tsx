@@ -5,7 +5,6 @@ import ImagesGallery from "./ImagesGallery";
 
 const Gallery = async ({ params: { city } }: any) => {
   const vacations = await fetchVacationsServer();
-  console.log(vacations);
   const vacation: any = vacations.items.find(
     (item: any) => item.fields.slug === city
   );
