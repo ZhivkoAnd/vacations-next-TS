@@ -3,9 +3,14 @@ import React from "react";
 import { fetchVacationsServer } from "../components/utils/FetchQueryServer";
 import ImagesGallery from "./ImagesGallery";
 
+interface Vacations {
+  items: any;
+}
+
 const Gallery = async ({ params: { city } }: any) => {
-  const vacations = await fetchVacationsServer();
-  const vacation: any = vacations.items.find(
+  const vacations: Vacations = await fetchVacationsServer();
+  console.log(vacations.items);
+  const vacation: { fields: any } = vacations.items.find(
     (item: any) => item.fields.slug === city
   );
 

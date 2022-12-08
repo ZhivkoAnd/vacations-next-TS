@@ -1,0 +1,16 @@
+.notification {
+  color: black;
+
+  &--success {
+    color: green;
+  }
+  &--error {
+    color: red;
+  }
+  &--info {
+    color: blue;
+  }
+  &--warning {
+    color: yellow;
+  }
+}
