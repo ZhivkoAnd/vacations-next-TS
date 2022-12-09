@@ -2,10 +2,13 @@
 import ImageGallery from "react-image-gallery";
 
 interface Props {
-  images: [];
+  images: {
+    original: string;
+    thumbnail: string;
+  }[];
 }
 
-const ImagesGallery: React.FC<Props> = ({ images }) => {
+const ImagesGallery = ({ images }: Props) => {
   return <ImageGallery items={images} thumbnailPosition="left" />;
 };
 

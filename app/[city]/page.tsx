@@ -3,6 +3,11 @@ import React from "react";
 import { fetchVacationsServer } from "../components/utils/FetchQueryServer";
 import ImagesGallery from "./ImagesGallery";
 
+interface City {
+  params: {
+    city: string;
+  };
+}
 interface Vacations {
   items: {
     fields: {
@@ -12,10 +17,6 @@ interface Vacations {
       gallery?: {}[];
     };
   }[];
-}
-
-interface Vacation {
-  fields: any;
 }
 
 interface Image {
@@ -32,19 +33,10 @@ interface Slug {
   };
 }
 
-interface City {
-  params: {
-    city: string;
-  };
-}
-
 const Gallery = async ({ params: { city } }: City) => {
   const vacations: Vacations = await fetchVacationsServer();
-  console.log(vacations);
 
-  const vacation: Vacation = vacations.items.find(
-    (item) => item.fields.slug === city
-  );
+  const vacation = vacations.items.find((item) => item.fields.slug === city);
 
   const images = vacation.fields.gallery.map((image: Image) => {
     return {
