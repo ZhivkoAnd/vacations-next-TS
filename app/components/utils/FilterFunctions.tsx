@@ -1,6 +1,6 @@
 interface Data {
   fields: {
-    date: string;
+    date: number;
   };
 }
 

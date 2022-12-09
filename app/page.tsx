@@ -1,7 +1,7 @@
 "use client";
 
 import VacationPanel from "./components/ui/VacationPanel";
-import { fetchVacationsClient } from "./components/utils/FetchQueryClient";
+import { FetchVacationsClient } from "./components/utils/FetchQueryClient";
 import { useState, useEffect } from "react";
 import {
   filterDateAscending,
@@ -10,7 +10,7 @@ import {
 import ActionBar from "./components/ui/ActionBar";
 
 const Vacations = () => {
-  const { data, isLoading } = fetchVacationsClient();
+  const { data, isLoading } = FetchVacationsClient();
 
   const [inputQuery, setInputQuery] = useState("");
   const [filteredCities, setFilteredCities] = useState<any>(data);
@@ -26,6 +26,8 @@ const Vacations = () => {
   const inputData: any[any] = modifiedDateData?.filter((city) =>
     city.fields.title.toLowerCase().includes(inputQuery.toLowerCase())
   );
+
+  console.log(inputData)
 
   const setFilterDateAscending = () => {
     if (inputData && inputData.length) {

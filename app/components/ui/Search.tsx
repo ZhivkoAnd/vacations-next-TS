@@ -6,7 +6,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 
 interface Props {
   inputQuery: string;
-  setInputQuery: (event: string) => void;
+  setInputQuery: (e: string) => void;
 }
 
 const InputWithIcon = ({ inputQuery, setInputQuery } : Props) => {

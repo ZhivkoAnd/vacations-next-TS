@@ -13,6 +13,6 @@ const fetchQuery = async () => {
   return responce;
 };
 
-export const fetchVacationsClient = () => {
+export const FetchVacationsClient = () => {
   return useQuery(["vacations"], fetchQuery);
 };

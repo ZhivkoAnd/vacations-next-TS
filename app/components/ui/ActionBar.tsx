@@ -9,12 +9,13 @@ interface Props {
   setFilterDateDescending: () => void;
 }
 
-const ActionBar: React.FC<Props> = ({
+const ActionBar = ({
   inputQuery,
   setInputQuery,
   setFilterDateAscending,
   setFilterDateDescending,
-}) => {
+} : Props) => {
+  
   return (
     <div className="action-bar">
       <Filters
