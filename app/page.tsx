@@ -16,18 +16,31 @@ const Vacations = () => {
   const [filteredCities, setFilteredCities] = useState<any>(data);
   const [noVacationFound, setNoVacationFound] = useState(false);
 
-  const modifiedDateData = data?.items.map((obj: any) => {
+  interface Data {
+    fields: {
+      date?: string | number | Date;
+    };
+  }
+
+  interface InputData {
+    fields: {
+      title?: string;
+      date?: Date;
+    };
+  }
+
+  const modifiedDateData = data?.items.map((obj: Data) => {
     return {
       ...obj,
       fields: { ...obj.fields, date: new Date(obj.fields.date) },
     };
   });
 
-  const inputData: any[any] = modifiedDateData?.filter((city) =>
+  const inputData: InputData[] = modifiedDateData?.filter((city: any) =>
     city.fields.title.toLowerCase().includes(inputQuery.toLowerCase())
   );
 
-  console.log(inputData)
+  console.log(inputData);
 
   const setFilterDateAscending = () => {
     if (inputData && inputData.length) {

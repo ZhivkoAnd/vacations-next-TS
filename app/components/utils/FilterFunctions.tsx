@@ -1,6 +1,6 @@
 interface Data {
   fields: {
-    date: number;
+    date?: number | Date | string;
   };
 }
 
@@ -10,7 +10,7 @@ export const filterDateAscending = (arr: Data[]) => {
   });
 };
 
-export const filterDateDescending = (arr: [{ fields: { date: number } }]) => {
+export const filterDateDescending = (arr: Data[]) => {
   return [...arr].sort((a, b) => {
     return Number(b.fields.date) - Number(a.fields.date);
   });

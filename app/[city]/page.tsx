@@ -28,7 +28,9 @@ interface Image {
 }
 
 interface Slug {
-  fields: any;
+  fields: {
+    slug?: string;
+  };
 }
 
 const Gallery = async ({ params: { city } }: any) => {
