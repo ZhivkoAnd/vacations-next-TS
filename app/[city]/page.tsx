@@ -4,17 +4,37 @@ import { fetchVacationsServer } from "../components/utils/FetchQueryServer";
 import ImagesGallery from "./ImagesGallery";
 
 interface Vacations {
-  items: any;
+  items: {
+    fields: {}
+  }[]
 }
+
+interface Vacation {
+ fields: any
+}
+
+interface Image {
+  fields:  {
+    file: {
+      url: string
+    }
+  }
+ }
+ interface Slug {
+  fields: {
+
+  }
+ }
 
 const Gallery = async ({ params: { city } }: any) => {
   const vacations: Vacations = await fetchVacationsServer();
+  console.log(vacations)
   console.log(vacations.items);
-  const vacation: { fields: any } = vacations.items.find(
+  const vacation: Vacation = vacations.items.find(
     (item: any) => item.fields.slug === city
   );
 
-  const images = vacation.fields.gallery.map((image: any) => {
+  const images = vacation.fields.gallery.map((image: Image) => {
     return {
       original: `https:${image.fields.file.url}`,
       thumbnail: `https:${image.fields.file.url}`,
@@ -49,7 +69,7 @@ export default Gallery;
 export async function generateStaticParams() {
   const vacations = await fetchVacationsServer();
 
-  return vacations.items.map((item: any) => ({
+  return vacations.items.map((item: Slug) => ({
     city: item.fields.slug,
   }));
 }
