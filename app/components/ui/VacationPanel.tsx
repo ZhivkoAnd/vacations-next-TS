@@ -3,27 +3,29 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
-  item: {fields: {
-    thumbnail: {
-      fields: {
-        file : {
-          url: string
-          details: {
-            image: {
-              width: number
-              height: number
-            }
-          }
-        }
-      }
-    }
-    date: string
-    title: string
-    slug: string
-  }}
+  item: {
+    fields: {
+      thumbnail: {
+        fields: {
+          file: {
+            url: string;
+            details: {
+              image: {
+                width: number;
+                height: number;
+              };
+            };
+          };
+        };
+      };
+      date: string;
+      title: string;
+      slug: string;
+    };
+  };
 }
 
-const VacationPanel:React.FC<Props> = ({ item }) => {
+const VacationPanel = ({ item }: Props) => {
   return (
     <div className="vacation-panel">
       <Image

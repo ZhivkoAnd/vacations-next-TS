@@ -18,14 +18,8 @@ const Vacations = () => {
 
   interface Data {
     fields: {
-      date?: string | number | Date;
-    };
-  }
-
-  interface InputData {
-    fields: {
-      title?: string;
       date?: Date;
+      title?: string;
     };
   }
 
@@ -36,11 +30,9 @@ const Vacations = () => {
     };
   });
 
-  const inputData: InputData[] = modifiedDateData?.filter((city: InputData) =>
+  const inputData = modifiedDateData?.filter((city) =>
     city.fields.title.toLowerCase().includes(inputQuery.toLowerCase())
   );
-
-  console.log(inputData);
 
   const setFilterDateAscending = () => {
     if (inputData && inputData.length) {
