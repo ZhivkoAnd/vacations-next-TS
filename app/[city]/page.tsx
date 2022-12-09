@@ -14,17 +14,15 @@ interface Vacations {
       date?: Date;
       title?: string;
       slug?: string;
-      gallery?: {}[];
+      gallery?: {
+        fields: {
+          file: {
+            url: string;
+          };
+        };
+      }[];
     };
   }[];
-}
-
-interface Image {
-  fields: {
-    file: {
-      url: string;
-    };
-  };
 }
 
 const Gallery = async ({ params: { city } }: City) => {
@@ -32,7 +30,7 @@ const Gallery = async ({ params: { city } }: City) => {
 
   const vacation = vacations.items.find((item) => item.fields.slug === city);
 
-  const images = vacation.fields.gallery.map((image: Image) => {
+  const images = vacation.fields.gallery.map((image) => {
     return {
       original: `https:${image.fields.file.url}`,
       thumbnail: `https:${image.fields.file.url}`,
