@@ -5,30 +5,28 @@ import ImagesGallery from "./ImagesGallery";
 
 interface Vacations {
   items: {
-    fields: {}
-  }[]
+    fields: {};
+  }[];
 }
 
 interface Vacation {
- fields: any
+  fields: any;
 }
 
 interface Image {
-  fields:  {
-    file: {
-      url: string
-    }
-  }
- }
- interface Slug {
   fields: {
-
-  }
- }
+    file: {
+      url: string;
+    };
+  };
+}
+interface Slug {
+  fields: any;
+}
 
 const Gallery = async ({ params: { city } }: any) => {
   const vacations: Vacations = await fetchVacationsServer();
-  console.log(vacations)
+  console.log(vacations);
   console.log(vacations.items);
   const vacation: Vacation = vacations.items.find(
     (item: any) => item.fields.slug === city
