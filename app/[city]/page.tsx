@@ -27,12 +27,6 @@ interface Image {
   };
 }
 
-interface Slug {
-  fields: {
-    slug?: string;
-  };
-}
-
 const Gallery = async ({ params: { city } }: City) => {
   const vacations: Vacations = await fetchVacationsServer();
 
@@ -71,9 +65,9 @@ const Gallery = async ({ params: { city } }: City) => {
 export default Gallery;
 
 export async function generateStaticParams() {
-  const vacations = await fetchVacationsServer();
+  const vacations: Vacations = await fetchVacationsServer();
 
-  return vacations.items.map((item: Slug) => ({
+  return vacations.items.map((item) => ({
     city: item.fields.slug,
   }));
 }
