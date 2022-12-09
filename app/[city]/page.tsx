@@ -5,7 +5,13 @@ import ImagesGallery from "./ImagesGallery";
 
 interface Vacations {
   items: {
-    fields: {};
+    fields: {
+      thumbnail?: {};
+      date?: string;
+      title?: string;
+      slug?: string;
+      gallery?: {}[];
+    };
   }[];
 }
 
@@ -20,16 +26,16 @@ interface Image {
     };
   };
 }
+
 interface Slug {
   fields: any;
 }
 
 const Gallery = async ({ params: { city } }: any) => {
   const vacations: Vacations = await fetchVacationsServer();
-  console.log(vacations);
-  console.log(vacations.items);
+
   const vacation: Vacation = vacations.items.find(
-    (item: any) => item.fields.slug === city
+    (item) => item.fields.slug === city
   );
 
   const images = vacation.fields.gallery.map((image: Image) => {
