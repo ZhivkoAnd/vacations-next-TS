@@ -36,7 +36,7 @@ const Vacations = () => {
     };
   });
 
-  const inputData: InputData[] = modifiedDateData?.filter((city: any) =>
+  const inputData: InputData[] = modifiedDateData?.filter((city: InputData) =>
     city.fields.title.toLowerCase().includes(inputQuery.toLowerCase())
   );
 
