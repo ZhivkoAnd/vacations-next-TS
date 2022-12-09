@@ -15,7 +15,7 @@ const ActionBar = ({
   setFilterDateAscending,
   setFilterDateDescending,
 } : Props) => {
-  
+
   return (
     <div className="action-bar">
       <Filters
