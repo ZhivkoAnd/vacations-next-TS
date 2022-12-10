@@ -42,15 +42,13 @@ const Notification = ({
         {type === "error" && <p>Error</p>}
       </span>
       <div className="notification__content ">
-        <p className="notification__text">
-          <p className="notification__title">{title}</p>
-          {message}
-          {link && (
-            <a href={link} className="notification__link">
-              {linkText}
-            </a>
-          )}
-        </p>
+        <p className="notification__title">{title}</p>
+        {message}
+        {link && (
+          <a href={link} className="notification__link">
+            {linkText}
+          </a>
+        )}
       </div>
     </div>
   );
