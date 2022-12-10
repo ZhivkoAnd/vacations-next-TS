@@ -2,13 +2,10 @@ import React from "react";
 // import Image from "next/image";
 import { fetchVacationsServer } from "../components/utils/FetchQueryServer";
 import ImagesGallery from "./ImagesGallery";
-
-interface City {
-  params: {
+interface Vacations {
+  params?: {
     city: string;
   };
-}
-interface Vacations {
   items: {
     fields: {
       date?: Date;
@@ -25,7 +22,7 @@ interface Vacations {
   }[];
 }
 
-const Gallery = async ({ params: { city } }: City) => {
+const Gallery = async ({ params: { city } }: Vacations) => {
   const vacations: Vacations = await fetchVacationsServer();
 
   const vacation = vacations.items.find((item) => item.fields.slug === city);
