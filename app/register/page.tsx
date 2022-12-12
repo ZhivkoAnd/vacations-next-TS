@@ -1,7 +1,8 @@
 import React from "react";
+import RegisterPanel from "./RegisterPanel";
 
 const RegisterPage = () => {
-  return <div>page</div>;
+  return <RegisterPanel />;
 };
 
 export default RegisterPage;
