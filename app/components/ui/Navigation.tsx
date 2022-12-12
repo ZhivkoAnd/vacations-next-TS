@@ -16,6 +16,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useState } from "react";
 import Link from "next/link";
+import AuthenticationMenu from "./AuthenticationMenu";
 
 const pages = [
   {
@@ -103,6 +104,9 @@ const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
               <LightModeIcon onClick={lightMode} className="sun" />
               <DarkModeIcon onClick={darkMode} className="moon" />
             </div>
+          </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <AuthenticationMenu />
           </Box>
         </Toolbar>
       </Container>
