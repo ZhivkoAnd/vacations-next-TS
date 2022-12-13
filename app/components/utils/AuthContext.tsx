@@ -28,7 +28,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
 
   return (
     // Then we pass the current user that we get from firebase to the components
