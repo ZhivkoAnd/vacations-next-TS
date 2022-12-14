@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "./Firebase";
 
-export const AuthContext = createContext({});
+const AuthContext = createContext({});
 
 interface Props {
   children: React.ReactNode;
@@ -18,6 +18,14 @@ export const AuthContextProvider = ({ children }: Props) => {
 
   const createUser = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const login = (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logout = () => {
+    return signOut(auth);
   };
 
   useEffect(() => {
@@ -32,8 +40,12 @@ export const AuthContextProvider = ({ children }: Props) => {
 
   return (
     // Then we pass the current user that we get from firebase to the components
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, createUser, logout, login }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
-export default AuthContext;
+export const userAuth = () => {
+  return useContext(AuthContext);
+};
