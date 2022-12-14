@@ -14,17 +14,29 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Link from "next/link";
+import { userAuth } from "../components/utils/AuthContext";
+// import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const theme = createTheme();
 
 const SignIn = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const { login }: any = userAuth();
+  // const router: any = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [erorr, setError] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    setError("");
+    // router.push = "/testing";
+    try {
+      await login(email, password);
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   return (
@@ -60,6 +72,7 @@ const SignIn = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -70,6 +83,7 @@ const SignIn = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
