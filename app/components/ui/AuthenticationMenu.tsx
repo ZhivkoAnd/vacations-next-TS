@@ -2,22 +2,29 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { userAuth } from "../utils/AuthContext";
 
 const AuthenticationMenu = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [isNotLoggedIn, setNotNotLoggedIn] = useState(true);
 
-  const signOut = () => {
-    console.log("user signed out !");
+
+  const { user, logout }: any = userAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      location.href = "/";
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   return (
     <>
-      {isLoggedIn && <Link href="/login">Login</Link>}
-      {isNotLoggedIn && (
+      {!user && <Link href="/login">Login</Link>}
+      {user && (
         <>
-          <h5>Hi Jay !</h5>
-          <Link href="/login" onClick={signOut}>
+          <h5>Hi {user.email}</h5>
+          <Link href="/login" onClick={handleLogout}>
             Log Out
           </Link>
         </>

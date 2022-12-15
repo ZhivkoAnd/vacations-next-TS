@@ -5,8 +5,8 @@ import React, { useState } from "react";
 import Notification from "../components/ui/Notification";
 
 const Testing = () => {
+  
   const [alert, setAlert] = useState(false);
-
   const { user, logout }: any = userAuth();
 
   const handleLogout = async () => {
