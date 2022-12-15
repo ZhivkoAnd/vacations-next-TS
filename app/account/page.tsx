@@ -12,6 +12,7 @@ const Testing = () => {
   const handleLogout = async () => {
     try {
       await logout();
+      setAlert(true)
       location.href = "/";
     } catch (e) {
       console.log(e.message);

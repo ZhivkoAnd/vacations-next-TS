@@ -25,9 +25,9 @@ interface Vacations {
 const Gallery = async ({ params: { city } }: Vacations) => {
   const vacations: Vacations = await fetchVacationsServer();
 
-  const vacation = vacations.items.find((item) => item.fields.slug === city);
+  const vacation = vacations?.items.find((item) => item.fields.slug === city);
 
-  const images = vacation.fields.gallery.map((image) => {
+  const images = vacation?.fields.gallery.map((image) => {
     return {
       original: `https:${image.fields.file.url}`,
       thumbnail: `https:${image.fields.file.url}`,
@@ -36,7 +36,7 @@ const Gallery = async ({ params: { city } }: Vacations) => {
 
   return (
     <>
-      <h1 className="title-main">{vacation.fields.title}</h1>
+      <h1 className="title-main">{vacation?.fields.title}</h1>
       <div className="vacation-panels">
         <ImagesGallery images={images} />
       </div>
