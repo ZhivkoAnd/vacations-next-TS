@@ -14,14 +14,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Link from "next/link";
-import { userAuth } from "../components/utils/AuthContext";
+import { UserAuth } from "../components/utils/AuthContext";
 // import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const theme = createTheme();
 
 const SignIn = () => {
-  const { login }: any = userAuth();
+  const { login }: any = UserAuth();
   // const router: any = useRouter();
 
   const [email, setEmail] = useState("");
@@ -102,7 +102,7 @@ const SignIn = () => {
                 <Link href="#">Forgot password?</Link>
               </Grid>
               <Grid item>
-                <Link href="/register">Don't have an account? Sign Up</Link>
+                <Link href="/register">Dont have an account? Sign Up</Link>
               </Grid>
             </Grid>
           </Box>

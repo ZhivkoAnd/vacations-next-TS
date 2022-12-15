@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Link from "next/link";
 // import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { userAuth } from "../components/utils/AuthContext";
+import { UserAuth } from "../components/utils/AuthContext";
 
 const theme = createTheme();
 
@@ -23,7 +23,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [erorr, setError] = useState("");
 
-  const { createUser }: any = userAuth();
+  const { createUser }: any = UserAuth();
 
   // const router: any = useRouter();
 

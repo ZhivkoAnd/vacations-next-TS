@@ -1,5 +1,5 @@
 "use client";
-import { userAuth } from "../components/utils/AuthContext";
+import { UserAuth } from "../components/utils/AuthContext";
 
 import React, { useState } from "react";
 import Notification from "../components/ui/Notification";
@@ -7,7 +7,7 @@ import Notification from "../components/ui/Notification";
 const Testing = () => {
   
   const [alert, setAlert] = useState(false);
-  const { user, logout }: any = userAuth();
+  const { user, logout }: any = UserAuth();
 
   const handleLogout = async () => {
     try {

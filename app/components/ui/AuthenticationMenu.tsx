@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { userAuth } from "../utils/AuthContext";
+import { UserAuth } from "../utils/AuthContext";
 
 const AuthenticationMenu = () => {
 
 
-  const { user, logout }: any = userAuth();
+  const { user, logout }: any = UserAuth();
 
   const handleLogout = async () => {
     try {
