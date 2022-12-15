@@ -4,8 +4,11 @@ import { UserAuth } from "../components/utils/AuthContext";
 import React, { useState } from "react";
 import Notification from "../components/ui/Notification";
 import Toast from "../components/ui/Toast"
+import {useRouter} from 'next/navigation'
 
 const Testing = () => {
+
+  const router = useRouter()
   
   const [alert, setAlert] = useState(false);
   const { user, logout }: any = UserAuth();
@@ -16,7 +19,7 @@ const Testing = () => {
       await logout();
       setAlert(true)
       setToast(true);
-    //  location.href = "/";
+      router.push("/")
     } catch (e) {
       console.log(e.message);
     }
@@ -25,7 +28,7 @@ const Testing = () => {
   return (
     <>
       <div>Testing</div>
-      { toast && <Toast/> }
+      { toast && <Toast message = "You have logged out" toastType="success"/> }
       <button onClick={() => setAlert(true)}>Display Alert</button>
       <button onClick={() => setAlert(false)}>Hide Alert</button>
       <div>Email : {user && user.email}</div>
