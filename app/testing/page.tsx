@@ -1,5 +1,6 @@
 "use client";
 import { UserAuth } from "../components/utils/AuthContext";
+import { GlobalState } from "../components/utils/GlobalContext";
 
 import React, { useState } from "react";
 import Notification from "../components/ui/Notification";
@@ -12,14 +13,16 @@ const Testing = () => {
   
   const [alert, setAlert] = useState(false);
   const { user, logout }: any = UserAuth();
-  const [toast,setToast] = useState(false)
+  const { toast, setToast }: any = GlobalState();
 
+console.log(toast)
   const handleLogout = async () => {
     try {
       await logout();
       setAlert(true)
       setToast(true);
-      router.push("/")
+     // router.push("")
+      console.log(toast)
     } catch (e) {
       console.log(e.message);
     }
