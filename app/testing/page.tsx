@@ -12,16 +12,14 @@ const Testing = () => {
   
   const [alert, setAlert] = useState(false);
   const { user, logout }: any = UserAuth();
-  const { toast, setToast }: any = GlobalState();
+  const { setLogoutNotification }: any = GlobalState();
 
-console.log(toast)
   const handleLogout = async () => {
     try {
       await logout();
       setAlert(true)
-      setToast(true);
+      setLogoutNotification(true);
       router.push("/")
-      console.log(toast)
     } catch (e) {
       console.log(e.message);
     }
