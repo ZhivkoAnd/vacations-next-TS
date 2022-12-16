@@ -8,7 +8,7 @@ import {useRouter} from 'next/navigation'
 
 const Testing = () => {
 
-  const router = useRouter()
+  const router: any = useRouter()
   
   const [alert, setAlert] = useState(false);
   const { user, logout }: any = UserAuth();
@@ -20,7 +20,7 @@ console.log(toast)
       await logout();
       setAlert(true)
       setToast(true);
-     // router.push("")
+      router.push("/")
       console.log(toast)
     } catch (e) {
       console.log(e.message);

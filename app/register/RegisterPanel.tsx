@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { UserAuth } from "../components/utils/AuthContext";
 
@@ -25,12 +25,12 @@ export default function SignUp() {
 
   const { createUser }: any = UserAuth();
 
-  // const router: any = useRouter();
+   const router: any = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
-    // router.push = "/testing";
+    router.push("/testing");
     try {
       await createUser(email, password);
     } catch (e) {

@@ -13,7 +13,7 @@ interface Props {
 
 const Wrap = ({ children }: Props) => {
   const [colorMode, setColorMode] = useState("dark");
-const { toast, setToast }: any = GlobalState();
+  const { toast }: any = GlobalState();
 
 
   const lightMode = () => {
