@@ -4,6 +4,8 @@ import React from "react";
 import Navigation from "./components/ui/Navigation";
 import Footer from "./components/ui/Footer";
 import { useState } from "react";
+import Toast from "./components/ui/Toast"
+import { GlobalState } from "./components/utils/GlobalContext";
 
 interface Props {
   children: React.ReactNode;
@@ -11,6 +13,8 @@ interface Props {
 
 const Wrap = ({ children }: Props) => {
   const [colorMode, setColorMode] = useState("dark");
+const { toast, setToast }: any = GlobalState();
+
 
   const lightMode = () => {
     setColorMode("light");
@@ -23,6 +27,7 @@ const Wrap = ({ children }: Props) => {
     <div className={`App ${colorMode}`}>
       <Navigation lightMode={lightMode} darkMode={darkMode} />
       <div className="page-content">{children}</div>
+      { toast && <Toast message = "You have logged out" toastType="success"/> }
       <Footer />
     </div>
   );

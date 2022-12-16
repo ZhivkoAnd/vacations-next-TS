@@ -4,7 +4,6 @@ import { GlobalState } from "../components/utils/GlobalContext";
 
 import React, { useState } from "react";
 import Notification from "../components/ui/Notification";
-import Toast from "../components/ui/Toast"
 import {useRouter} from 'next/navigation'
 
 const Testing = () => {
@@ -31,7 +30,6 @@ console.log(toast)
   return (
     <>
       <div>Testing</div>
-      { toast && <Toast message = "You have logged out" toastType="success"/> }
       <button onClick={() => setAlert(true)}>Display Alert</button>
       <button onClick={() => setAlert(false)}>Hide Alert</button>
       <div>Email : {user && user.email}</div>
