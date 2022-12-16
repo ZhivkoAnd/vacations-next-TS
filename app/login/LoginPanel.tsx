@@ -17,11 +17,14 @@ import Link from "next/link";
 import { UserAuth } from "../components/utils/AuthContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { GlobalState } from "../components/utils/GlobalContext";
+
 
 const theme = createTheme();
 
 const SignIn = () => {
   const { login }: any = UserAuth();
+  const { setLoginNotification }: any = GlobalState();
    const router: any = useRouter();
 
   const [email, setEmail] = useState("");
@@ -30,6 +33,7 @@ const SignIn = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoginNotification(true);
     setError("");
     router.push("/testing");
     try {

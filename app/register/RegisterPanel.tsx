@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { UserAuth } from "../components/utils/AuthContext";
+import { GlobalState } from "../components/utils/GlobalContext";
 
 const theme = createTheme();
 
@@ -24,12 +25,14 @@ export default function SignUp() {
   const [erorr, setError] = useState("");
 
   const { createUser }: any = UserAuth();
+  const { setRegisterNotification }: any = GlobalState();
 
    const router: any = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
+    setRegisterNotification(true);
     router.push("/testing");
     try {
       await createUser(email, password);

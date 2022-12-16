@@ -15,7 +15,7 @@ interface Props {
 const Wrap = ({ children }: Props) => {
   const [colorMode, setColorMode] = useState("dark");
   const { user }: any = UserAuth();
-  const { logoutNotification, toast2, toast3 }: any = GlobalState();
+  const { logoutNotification, loginNotification, registerNotification }: any = GlobalState();
 
 
   const lightMode = () => {
@@ -30,8 +30,8 @@ const Wrap = ({ children }: Props) => {
       <Navigation lightMode={lightMode} darkMode={darkMode} />
       <div className="page-content">{children}</div>
       { logoutNotification && <Toast message = "You have logged out" toastType="success"/> }
-      { toast2 && <Toast message = {`You have successfully loged in as ${user.email}`} toastType="success"/> }
-      { toast3 && <Toast message = {`You have successfully registered as ${user.email}`} toastType="success"/> }
+      { loginNotification && <Toast message = {`You have successfully loged in as ${user && user.email}`} toastType="success"/> }
+      { registerNotification && <Toast message = {`You have successfully registered as ${user && user.email}`} toastType="success"/> }
       <Footer />
     </div>
   );

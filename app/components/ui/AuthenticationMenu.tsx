@@ -1,18 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { UserAuth } from "../utils/AuthContext";
+import { GlobalState } from "../utils/GlobalContext";
+import {useRouter} from 'next/navigation'
 
 const AuthenticationMenu = () => {
 
-
   const { user, logout }: any = UserAuth();
+  const { setLogoutNotification }: any = GlobalState();
+
+  const router: any = useRouter()
 
   const handleLogout = async () => {
     try {
       await logout();
-      location.href = "/";
+      setLogoutNotification(true);
+      router.push("/")
     } catch (e) {
       console.log(e.message);
     }
