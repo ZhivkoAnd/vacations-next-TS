@@ -17,6 +17,7 @@ const Wrap = ({ children }: Props) => {
   const { user }: any = UserAuth();
   const { logoutNotification, loginNotification, registerNotification }: any = GlobalState();
 
+  console.log(logoutNotification)
 
   const lightMode = () => {
     setColorMode("light");

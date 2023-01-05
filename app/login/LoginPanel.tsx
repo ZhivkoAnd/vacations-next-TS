@@ -24,7 +24,7 @@ const theme = createTheme();
 
 const SignIn = () => {
   const { login }: any = UserAuth();
-  const { setLoginNotification }: any = GlobalState();
+  const { setLogoutNotification }: any = GlobalState();
    const router: any = useRouter();
 
   const [email, setEmail] = useState("");
@@ -33,7 +33,7 @@ const SignIn = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoginNotification(true);
+    setLogoutNotification(true);
     setError("");
     router.push("/testing");
     try {
