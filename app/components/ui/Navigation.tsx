@@ -27,6 +27,10 @@ const pages = [
     label: "Testing",
     link: "/testing",
   },
+  {
+    label: "Booking",
+    link: "/booking",
+  },
 ];
 
 interface Props {
