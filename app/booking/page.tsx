@@ -14,14 +14,13 @@ const vacations = [
     price: 230
     },
     {
-        city: "Sofia",
-        price: 100
-        },
-        {
+    city: "Sofia",
+    price: 100
+    },
+    {
             city: "Bucharest",
             price: 50
             },
-
 
 ]
 
@@ -32,7 +31,7 @@ const addToCart = () => {
 
 const Increment = () => {
   setCount(count => count + 1)
-  setCart((a) => [...a, {}])
+  setCart((a) => [...a, {city: count}])
 }
 
 const Decrement = () => {
