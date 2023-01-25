@@ -10,14 +10,17 @@ const Booking = () => {
 
 const vacations = [
     {
+    id: 1,
     city: "copenhagen",
     price: 230
     },
     {
+        id: 2,
     city: "Sofia",
     price: 100
     },
     {
+        id: 3,
             city: "Bucharest",
             price: 50
             },
