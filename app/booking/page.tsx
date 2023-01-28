@@ -5,6 +5,13 @@ import { useState } from "react";
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
 
+  interface Product {
+    id: number;
+    city: string;
+    price: number;
+    qty?: number;
+  }
+
   const vacations = [
     {
       id: 1,
@@ -23,12 +30,26 @@ const Booking = () => {
     },
   ];
 
-  const add = (product: any) => {
+  const add = (product: Product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
       setCartItems(
         cartItems.map((x) =>
           x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+    console.log("jej");
+  };
+
+  const remove = (product: any) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
         )
       );
     } else {
@@ -47,6 +68,7 @@ const Booking = () => {
             <div>{city.city}</div>
             <div>{city.price}</div>
             <button onClick={() => add(city)}>+</button>
+            <button onClick={() => remove(city)}>-</button>
           </div>
         );
       })}
@@ -57,7 +79,13 @@ const Booking = () => {
         ) : (
           <div>
             {cartItems.map((e) => {
-              return <div key={e.id}>{e.city}</div>;
+              return (
+                <div key={e.id}>
+                  {e.city}...
+                  {e.price}...
+                  {e.qty}...
+                </div>
+              );
             })}
           </div>
         )}
