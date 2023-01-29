@@ -1,13 +1,9 @@
 "use client";
-import { FetchVacationsClient } from "../components/utils/FetchQueryClient";
-import Image from "next/image";
+import { equal } from "assert";
 import { useState } from "react";
 
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
-  const { data, isLoading } = FetchVacationsClient();
-
-  console.log(data?.items[0].fields);
 
   interface Product {
     id: number;
