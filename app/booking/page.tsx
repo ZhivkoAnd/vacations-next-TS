@@ -16,7 +16,7 @@ const Booking = () => {
   const vacations = [
     {
       id: 1,
-      title: "copenhagen",
+      title: "Copenhagen",
       price: 230,
       image:
         "https://www.visitdenmark.com/sites/visitdenmark.com/files/styles/article_teaser/public/2019-03/Nyhavn%20K%C3%B8benhavn_43397.jpg?h=266c594a&itok=1ucaad7M",
@@ -50,7 +50,7 @@ const Booking = () => {
     }
   };
 
-  const remove = (product: any) => {
+  const remove = (product: Product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
       setCartItems(
@@ -60,6 +60,13 @@ const Booking = () => {
       );
     } else {
       setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  };
+
+  const lol = (id: any) => {
+    const price = cartItems.find((e) => e.id === id);
+    if (price) {
+      return price.qty;
     }
   };
 
@@ -77,6 +84,7 @@ const Booking = () => {
               <h2 className="vacation-panel__title"> {city.title}</h2>
               <h2 className="vacation-panel__title"> ${city.price}</h2>
               <button onClick={() => add(city)}>+</button>
+              <div>{lol(city.id)}</div>
               <button onClick={() => remove(city)}>-</button>
             </div>
           );
