@@ -1,5 +1,4 @@
 import React from "react";
-import Cart from "../../booking/cart/page";
 
 const Basket = (props: any) => {
 
@@ -32,7 +31,7 @@ const Basket = (props: any) => {
   </tbody>
   
 </table>
-<div className="vacation-panel__shop-total-price">Total: ${totalPrice} </div>
+ <div className="vacation-panel__shop-total-price">Total: ${totalPrice} </div>
     </div>
   );
 };
