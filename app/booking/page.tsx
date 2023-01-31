@@ -55,7 +55,7 @@ const Booking = () => {
     if (exist) {
       setCartItems(
         cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+          x.id === product.id ? { ...exist, qty: exist.qty > 0 ? exist.qty - 1 : exist.qty = 0 } : x
         )
       );
     } else {
@@ -63,10 +63,10 @@ const Booking = () => {
     }
   };
 
-  const lol = (id: any) => {
-    const price = cartItems.find((e) => e.id === id);
-    if (price) {
-      return price.qty;
+  const cityQuantity = (id: number) => {
+    const quantity = cartItems.find((e) => e.id === id);
+    if (quantity) {
+      return quantity.qty;
     }
   };
 
@@ -82,10 +82,13 @@ const Booking = () => {
                 alt="city thumbnail"
               />
               <h2 className="vacation-panel__title"> {city.title}</h2>
-              <h2 className="vacation-panel__title"> ${city.price}</h2>
-              <button onClick={() => add(city)}>+</button>
-              <div>{lol(city.id)}</div>
+              <h2 className="vacation-panel__title"> Price: ${city.price}</h2>
+              <div className="vacation-panel__shop">
               <button onClick={() => remove(city)}>-</button>
+              <div>{cityQuantity(city.id) > 0 ? cityQuantity(city.id) : "0"}</div>
+              <button onClick={() => add(city)}>+</button>
+              </div>
+              {cityQuantity(city.id) > 0 ? <div className="vacation-panel__shop-total"> Total: ${cityQuantity(city.id) * city.price}</div> : ""}
             </div>
           );
         })}
