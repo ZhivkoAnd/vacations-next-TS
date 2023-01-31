@@ -1,6 +1,7 @@
 "use client";
 import { equal } from "assert";
 import { useState } from "react";
+import Basket from '../components/ui/Basket'
 
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -70,6 +71,8 @@ const Booking = () => {
     }
   };
 
+  console.log(cartItems)
+
   return (
     <div className="container">
       <div className="vacation-panels">
@@ -93,21 +96,13 @@ const Booking = () => {
           );
         })}
       </div>
-      <div>Basket</div>
+      <div>Your Basket</div>
       <div>
         {!cartItems.length ? (
-          <div>Empty</div>
+          <div>Basket is empty</div>
         ) : (
           <div>
-            {cartItems.map((e) => {
-              return (
-                <div key={e.id}>
-                  {e.title}...
-                  {e.price * e.qty}...
-                  {e.qty}...
-                </div>
-              );
-            })}
+            <Basket cartItems = {cartItems}/>
           </div>
         )}
       </div>

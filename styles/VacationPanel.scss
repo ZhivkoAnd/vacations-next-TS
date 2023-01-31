@@ -24,6 +24,12 @@
     margin-bottom: 1rem;
   }
 
+  &__shop-total-price {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5rem;
+  }
+
   &__date {
     font-size: 1rem;
   }
