@@ -57,10 +57,10 @@ const Booking = () => {
       setCartItems(
         cartItems.map((x) =>
           x.id === product.id ? { ...exist, qty: exist.qty > 0 ? exist.qty - 1 : exist.qty = 0 } : x
-        )
+        ).filter((e)=>e.qty > 0)
       );
     } else {
-      setCartItems([...cartItems, { ...product, qty: 1 }]);
+      setCartItems([...cartItems]);
     }
   };
 

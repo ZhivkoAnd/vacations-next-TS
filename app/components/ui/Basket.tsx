@@ -21,12 +21,14 @@ const Basket = (props: any) => {
   </thead>
   <tbody>
     {props.cartItems?.map((item: any)=> {
+      if (item.qty > 0) {
         return <tr key={item.id}>
         <th scope="row">{item.title}</th>
-        <td>{item.qty}</td>
-        <td>{item.price}</td>
-        <td>{item.qty * item.price}</td>
-      </tr>
+         <td>{item.qty}</td>
+         <td>{item.price}</td>
+         <td>{item.qty * item.price}</td>
+       </tr>
+      }
     })}
   </tbody>
   
