@@ -16,3 +16,12 @@ const fetchQuery = async () => {
 export const FetchVacationsClient = () => {
   return useQuery(["vacations"], fetchQuery);
 };
+
+const fetchBookingQuery = async () => {
+  const response = await fetch("http://localhost:3000/api");
+  return response.json();
+};
+
+export const FetchBookings = () => {
+  return useQuery(["bookings"], fetchBookingQuery);
+};

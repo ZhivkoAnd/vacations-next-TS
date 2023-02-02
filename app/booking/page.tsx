@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Basket from '../components/ui/Basket'
+import {bookings} from '../components/utils/BookingsData'
 
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -12,30 +13,6 @@ const Booking = () => {
     image?: string;
     qty?: number;
   }
-
-  const vacations = [
-    {
-      id: 1,
-      title: "Copenhagen",
-      price: 230,
-      image:
-        "https://www.visitdenmark.com/sites/visitdenmark.com/files/styles/article_teaser/public/2019-03/Nyhavn%20K%C3%B8benhavn_43397.jpg?h=266c594a&itok=1ucaad7M",
-    },
-    {
-      id: 2,
-      title: "Sofia",
-      price: 100,
-      image:
-        "https://theweekendfox.com/wp-content/uploads/2021/07/Bulgaria-Post-1-Cathedral-3.jpg",
-    },
-    {
-      id: 3,
-      title: "Bucharest",
-      price: 50,
-      image:
-        "https://static01.nyt.com/images/2018/11/18/travel/18Hours-Bucharest1/18Hours-Bucharest1-articleLarge-v3.jpg?quality=75&auto=webp&disable=upscale",
-    },
-  ];
 
   const add = (product: Product) => {
     const exist = cartItems.find((x) => x.id === product.id);
@@ -75,7 +52,7 @@ const Booking = () => {
   return (
     <div className="container">
       <div className="vacation-panels">
-        {vacations.map((city) => {
+        {bookings.map((city) => {
           return (
             <div className="vacation-panel" key={city.title}>
               <img

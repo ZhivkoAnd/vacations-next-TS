@@ -1,7 +1,11 @@
+"use client";
+
+import { FetchBookings } from "../components/utils/FetchQueryClient";
+
 const Admin = () => {
 
-// CRUD
-
+  const { data, isLoading } = FetchBookings();
+  console.log(data)
 
     return (
       <>

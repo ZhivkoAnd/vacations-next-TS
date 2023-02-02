@@ -1,3 +1,5 @@
+import {bookings} from "../../app/components/utils/BookingsData"
+
 export default function handler(req, res) {
   const {method} = req;
   console.log("method: ", method);
@@ -5,7 +7,7 @@ export default function handler(req, res) {
   switch(method) {
     case 'GET':
       // get data
-      res.status(200).json({pageName: "Dashboard Two page API"});
+      res.status(200).json(bookings);
       break;
 
     case 'POST':
