@@ -31,6 +31,10 @@ const pages = [
     label: "Booking",
     link: "/booking",
   },
+  {
+    label: "Admin",
+    link: "/admin",
+  },
 ];
 
 interface Props {
