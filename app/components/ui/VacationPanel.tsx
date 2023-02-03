@@ -1,15 +1,17 @@
 import React from "react";
 
 interface Product {
-    id : number;
-    title: string;
-    price: number;
-    image?: string;
-    qty?: number;
+    city : {
+        id : number;
+        title: string;
+        price: number;
+        image?: string;
+        qty?: number;
+    }
   }
   
 
-const VacationPanel = ({ city }: any) => {
+const VacationPanel = ({ city }: Product) => {
   return (
      <div className="vacation-panel" key={city.title}>
         <img
