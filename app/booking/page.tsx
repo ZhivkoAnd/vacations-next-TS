@@ -6,7 +6,7 @@ import {bookings} from '../components/utils/BookingsData'
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
 
-  interface Product {
+  interface Booking {
     id: number;
     title: string;
     price: number;
@@ -14,25 +14,25 @@ const Booking = () => {
     qty?: number;
   }
 
-  const add = (product: Product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-    if (exist) {
+  const add = (booking: Booking) => {
+    const existingBooking = cartItems.find((x) => x.id === booking.id);
+    if (existingBooking) {
       setCartItems(
         cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+          x.id === booking.id ? { ...existingBooking, qty: existingBooking.qty + 1 } : x
         )
       );
     } else {
-      setCartItems([...cartItems, { ...product, qty: 1 }]);
+      setCartItems([...cartItems, { ...booking, qty: 1 }]);
     }
   };
 
-  const remove = (product: Product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-    if (exist) {
+  const remove = (booking: Booking) => {
+    const existingBooking = cartItems.find((x) => x.id === booking.id);
+    if (existingBooking) {
       setCartItems(
         cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty > 0 ? exist.qty - 1 : exist.qty = 0 } : x
+          x.id === booking.id ? { ...existingBooking, qty: existingBooking.qty > 0 ? existingBooking.qty - 1 : existingBooking.qty = 0 } : x
         ).filter((e)=>e.qty > 0)
       );
     } else {

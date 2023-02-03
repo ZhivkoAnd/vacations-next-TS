@@ -6,6 +6,17 @@ import React, { useState } from "react";
 import Notification from "../components/ui/Notification";
 import {useRouter} from 'next/navigation'
 
+import VacationPanel from "../components/ui/VacationPanel";
+import { FetchBookings } from "../components/utils/FetchQueryClient";
+
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  image?: string;
+  qty?: number;
+}
+
 const Testing = () => {
 
   const router: any = useRouter()
@@ -13,6 +24,8 @@ const Testing = () => {
   const [alert, setAlert] = useState(false);
   const { user, logout }: any = UserAuth();
   const { setLogoutNotification }: any = GlobalState();
+
+  const { data, isLoading } = FetchBookings();
 
   const handleLogout = async () => {
     try {
@@ -39,6 +52,17 @@ const Testing = () => {
           message="This is a notification"
         />
       )}
+<div className="container">
+      <div className="vacation-panels">
+        {data?.map((city: Product ) => {
+          return (
+            <div key={city.id}>
+              <VacationPanel city={city}/>
+           </div>
+          );
+        })}
+      </div>
+    </div>
     </>
   );
 };
