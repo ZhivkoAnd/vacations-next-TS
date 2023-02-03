@@ -1,6 +1,6 @@
 "use client";
 
-import VacationPanel from "./components/ui/VacationPanel";
+import VacationPanelContentful from "./components/ui/VacationPanelContentful";
 import { FetchVacationsClient } from "./components/utils/FetchQueryClient";
 import { useState, useEffect } from "react";
 import {
@@ -76,7 +76,7 @@ const Vacations = () => {
       {filteredCities.length ? (
         <div className="vacation-panels">
           {filteredCities?.map((vacation: any) => (
-            <VacationPanel item={vacation} key={vacation.sys.id} />
+            <VacationPanelContentful item={vacation} key={vacation.sys.id} />
           ))}
         </div>
       ) : (
