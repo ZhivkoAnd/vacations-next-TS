@@ -52,14 +52,15 @@ const Booking = () => {
       }
     };
 
-  const cityQuantity = (id: number) => {
-    const quantity = cartItems.find((e) => e.id === id);
+  // This will display the quantity of the specified item from the shopping cart
+  const cityQuantity = (clickedBookingId: number) => {
+    const quantity = cartItems.find(
+      (booking) => booking.id === clickedBookingId
+    );
     if (quantity) {
       return quantity.qty;
     }
   };
-
-  console.log(cartItems);
 
   return (
     <div className="container">
@@ -83,7 +84,6 @@ const Booking = () => {
               </div>
               {cityQuantity(city.id) > 0 ? (
                 <div className="vacation-panel__shop-total">
-                  {" "}
                   Total: ${cityQuantity(city.id) * city.price}
                 </div>
               ) : (
