@@ -6,7 +6,7 @@ import { bookings } from "../components/utils/BookingsData";
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
 
-  interface Booking {
+  interface BookingProps {
     id: number;
     title: string;
     price: number;
@@ -14,44 +14,43 @@ const Booking = () => {
     qty?: number;
   }
 
-  const add = (booking: Booking) => {
-    // Takes the item with the same id as the item we clicked
-    const existingBooking = cartItems.find((x) => x.id === booking.id);
+  const add = (clickedBooking: BookingProps) => {
+    // Finds the item with the same id as the item we clicked
+    const existingBooking = cartItems.find(
+      (booking) => booking.id === clickedBooking.id
+    );
     if (existingBooking) {
+      // I map through the CartItems, and if the booking id is the same as clicked booking id, we return the same item but with increased quantity by 1,
+      // and if the id is not the same, we return the item without any changes.
       setCartItems(
-        cartItems.map((x) =>
-          x.id === booking.id
+        cartItems.map((booking) =>
+          booking.id === clickedBooking.id
             ? { ...existingBooking, qty: existingBooking.qty + 1 }
-            : x
+            : booking
         )
       );
+      //  If the item doesn't exist yet, we add it to the existing array with a qty of 1
     } else {
-      setCartItems([...cartItems, { ...booking, qty: 1 }]);
+      setCartItems([...cartItems, { ...clickedBooking, qty: 1 }]);
     }
   };
 
-  const remove = (booking: Booking) => {
-    const existingBooking = cartItems.find((x) => x.id === booking.id);
-    if (existingBooking) {
-      setCartItems(
-        cartItems
-          .map((x) =>
-            x.id === booking.id
-              ? {
-                  ...existingBooking,
-                  qty:
-                    existingBooking.qty > 0
-                      ? existingBooking.qty - 1
-                      : (existingBooking.qty = 0),
-                }
-              : x
-          )
-          .filter((e) => e.qty > 0)
-      );
-    } else {
-      setCartItems([...cartItems]);
-    }
-  };
+  // prettier-ignore
+  const remove = (clickedBooking: BookingProps) => {
+      const existingBooking = cartItems.find((x) => x.id === clickedBooking.id);
+      if (existingBooking) {
+         // I map through the CartItems, and if the booking id is the same as clicked booking id, we return the same item but decrease the qty by 1
+         // I also check if the qty of that item is more than 1, because we don't want to go negative qty.
+         // If the item id is not the same as the clicked item, we return the same item
+         // Finally, I filter through the map items and return only with those with qty, as I dont want empty items in the array
+        setCartItems(cartItems
+            .map((booking) => booking.id === clickedBooking.id ? { ...existingBooking, qty: existingBooking.qty > 0 ? existingBooking.qty - 1 : (existingBooking.qty = 0), }: booking)
+            .filter((item) => item.qty > 0)
+        );
+      } else {
+        setCartItems([...cartItems]);
+      }
+    };
 
   const cityQuantity = (id: number) => {
     const quantity = cartItems.find((e) => e.id === id);
