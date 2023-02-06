@@ -62,6 +62,8 @@ const Booking = () => {
     }
   };
 
+  const totalQuantity = cartItems.reduce((a: any, b: any) => a + b.qty, 0);
+
   return (
     <div className="container">
       <div className="vacation-panels">
@@ -93,6 +95,7 @@ const Booking = () => {
           );
         })}
       </div>
+      <div>You have {totalQuantity} items</div>
       <div>Your Basket</div>
       <div>
         {!cartItems.length ? (

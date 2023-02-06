@@ -1,11 +1,16 @@
 import React from "react";
 
 const Basket = (props: any) => {
-  let totalPrice = 0;
+  // let totalPrice = 0;
 
-  props.cartItems.forEach((item: any) => {
-    totalPrice += item.price * item.qty;
-  });
+  // props.cartItems.forEach((item: any) => {
+  //   totalPrice += item.price * item.qty;
+  // });
+
+  const totalPrice = props.cartItems.reduce(
+    (a: any, b: any) => a + b.price * b.qty,
+    0
+  );
 
   return (
     <div>
@@ -34,7 +39,7 @@ const Basket = (props: any) => {
         </tbody>
       </table>
       <div className="vacation-panel__shop-total-price">
-        Total: ${totalPrice}{" "}
+        Total: ${totalPrice}
       </div>
     </div>
   );
