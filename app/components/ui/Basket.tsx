@@ -29,7 +29,12 @@ const Basket = (props: any) => {
               return (
                 <tr key={item.id}>
                   <th scope="row">{item.title}</th>
-                  <td>{item.qty}</td>
+                  <td>
+                    <button onClick={() => props.remove(item)}>-</button>
+                    {item.qty}
+                    <button onClick={() => props.add(item)}>+</button>
+                    <button onClick={() => props.removeItem(item)}>X</button>
+                  </td>
                   <td>{item.price}</td>
                   <td>{item.qty * item.price}</td>
                 </tr>

@@ -53,16 +53,18 @@ const Booking = () => {
     };
 
   // This will display the quantity of the specified item from the shopping cart
-  const cityQuantity = (clickedBookingId: number) => {
-    const quantity = cartItems.find(
-      (booking) => booking.id === clickedBookingId
-    );
+  const cityQuantity = (clickedBooking: number) => {
+    const quantity = cartItems.find((booking) => booking.id === clickedBooking);
     if (quantity) {
       return quantity.qty;
     }
   };
 
   const totalQuantity = cartItems.reduce((a: any, b: any) => a + b.qty, 0);
+
+  const removeItem = (clickedBooking: any) => {
+    setCartItems(cartItems.filter((e) => e.id !== clickedBooking.id));
+  };
 
   return (
     <div className="container">
@@ -102,7 +104,12 @@ const Booking = () => {
           <div>Basket is empty</div>
         ) : (
           <div>
-            <Basket cartItems={cartItems} />
+            <Basket
+              cartItems={cartItems}
+              removeItem={removeItem}
+              add={add}
+              remove={remove}
+            />
           </div>
         )}
       </div>
