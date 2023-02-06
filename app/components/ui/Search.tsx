@@ -9,7 +9,7 @@ interface Props {
   setInputQuery: (e: string) => void;
 }
 
-const InputWithIcon = ({ inputQuery, setInputQuery } : Props) => {
+const InputWithIcon = ({ inputQuery, setInputQuery }: Props) => {
   return (
     <Box sx={{ "& > :not(style)": { m: 1 } }}>
       <Input

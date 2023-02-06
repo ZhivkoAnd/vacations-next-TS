@@ -4,7 +4,7 @@ import { GlobalState } from "../components/utils/GlobalContext";
 
 import React, { useState } from "react";
 import Notification from "../components/ui/Notification";
-import {useRouter} from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 import VacationPanel from "../components/ui/VacationPanel";
 import { FetchBookings } from "../components/utils/FetchQueryClient";
@@ -18,9 +18,8 @@ interface Product {
 }
 
 const Testing = () => {
+  const router: any = useRouter();
 
-  const router: any = useRouter()
-  
   const [alert, setAlert] = useState(false);
   const { user, logout }: any = UserAuth();
   const { setLogoutNotification }: any = GlobalState();
@@ -30,9 +29,9 @@ const Testing = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      setAlert(true)
+      setAlert(true);
       setLogoutNotification(true);
-      router.push("/")
+      router.push("/");
     } catch (e) {
       console.log(e.message);
     }
@@ -52,17 +51,17 @@ const Testing = () => {
           message="This is a notification"
         />
       )}
-<div className="container">
-      <div className="vacation-panels">
-        {data?.map((city: Product ) => {
-          return (
-            <div key={city.id}>
-              <VacationPanel city={city}/>
-           </div>
-          );
-        })}
+      <div className="container">
+        <div className="vacation-panels">
+          {data?.map((city: Product) => {
+            return (
+              <div key={city.id}>
+                <VacationPanel city={city} />
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
     </>
   );
 };

@@ -27,7 +27,7 @@ export default function SignUp() {
   const { createUser }: any = UserAuth();
   const { setRegisterNotification }: any = GlobalState();
 
-   const router: any = useRouter();
+  const router: any = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

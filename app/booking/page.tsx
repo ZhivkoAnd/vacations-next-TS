@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Basket from '../components/ui/Basket'
-import {bookings} from '../components/utils/BookingsData'
+import Basket from "../components/ui/Basket";
+import { bookings } from "../components/utils/BookingsData";
 
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -15,11 +15,14 @@ const Booking = () => {
   }
 
   const add = (booking: Booking) => {
+    // Takes the item with the same id as the item we clicked
     const existingBooking = cartItems.find((x) => x.id === booking.id);
     if (existingBooking) {
       setCartItems(
         cartItems.map((x) =>
-          x.id === booking.id ? { ...existingBooking, qty: existingBooking.qty + 1 } : x
+          x.id === booking.id
+            ? { ...existingBooking, qty: existingBooking.qty + 1 }
+            : x
         )
       );
     } else {
@@ -31,9 +34,19 @@ const Booking = () => {
     const existingBooking = cartItems.find((x) => x.id === booking.id);
     if (existingBooking) {
       setCartItems(
-        cartItems.map((x) =>
-          x.id === booking.id ? { ...existingBooking, qty: existingBooking.qty > 0 ? existingBooking.qty - 1 : existingBooking.qty = 0 } : x
-        ).filter((e)=>e.qty > 0)
+        cartItems
+          .map((x) =>
+            x.id === booking.id
+              ? {
+                  ...existingBooking,
+                  qty:
+                    existingBooking.qty > 0
+                      ? existingBooking.qty - 1
+                      : (existingBooking.qty = 0),
+                }
+              : x
+          )
+          .filter((e) => e.qty > 0)
       );
     } else {
       setCartItems([...cartItems]);
@@ -47,7 +60,7 @@ const Booking = () => {
     }
   };
 
-  console.log(cartItems)
+  console.log(cartItems);
 
   return (
     <div className="container">
@@ -63,11 +76,20 @@ const Booking = () => {
               <h2 className="vacation-panel__title"> {city.title}</h2>
               <h2 className="vacation-panel__title"> Price: ${city.price}</h2>
               <div className="vacation-panel__shop">
-              <button onClick={() => remove(city)}>-</button>
-              <div>{cityQuantity(city.id) > 0 ? cityQuantity(city.id) : "0"}</div>
-              <button onClick={() => add(city)}>+</button>
+                <button onClick={() => remove(city)}>-</button>
+                <div>
+                  {cityQuantity(city.id) > 0 ? cityQuantity(city.id) : "0"}
+                </div>
+                <button onClick={() => add(city)}>+</button>
               </div>
-              {cityQuantity(city.id) > 0 ? <div className="vacation-panel__shop-total"> Total: ${cityQuantity(city.id) * city.price}</div> : ""}
+              {cityQuantity(city.id) > 0 ? (
+                <div className="vacation-panel__shop-total">
+                  {" "}
+                  Total: ${cityQuantity(city.id) * city.price}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           );
         })}
@@ -78,7 +100,7 @@ const Booking = () => {
           <div>Basket is empty</div>
         ) : (
           <div>
-            <Basket cartItems = {cartItems}/>
+            <Basket cartItems={cartItems} />
           </div>
         )}
       </div>
