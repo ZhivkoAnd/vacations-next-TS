@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Basket from "../components/ui/Basket";
 import { bookings } from "../components/utils/BookingsData";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -97,8 +98,7 @@ const Booking = () => {
           );
         })}
       </div>
-      <div>You have {totalQuantity} items</div>
-      <div>Your Basket</div>
+      <ShoppingCartIcon/> {totalQuantity}
       <div>
         {!cartItems.length ? (
           <div>Basket is empty</div>
