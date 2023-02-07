@@ -30,6 +30,12 @@
     margin-right: 6rem;
   }
 
+  &__basket-button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__date {
     font-size: 1rem;
   }

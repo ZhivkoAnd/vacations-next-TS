@@ -1,4 +1,7 @@
 import React from "react";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Basket = (props: any) => {
   // let totalPrice = 0;
@@ -28,12 +31,13 @@ const Basket = (props: any) => {
             if (item.qty > 0) {
               return (
                 <tr key={item.id}>
-                  <th scope="row">{item.title}</th>
+                  <th scope="row"> <DeleteIcon onClick={() => props.removeItem(item)}>X</DeleteIcon>{item.title}</th>
                   <td>
-                    <button onClick={() => props.remove(item)}>-</button>
-                    {item.qty}
-                    <button onClick={() => props.add(item)}>+</button>
-                    <button onClick={() => props.removeItem(item)}>X</button>
+                    <div className = "vacation-panel__basket-button-group">
+                     <RemoveCircleIcon onClick={() => props.remove(item)}>-</RemoveCircleIcon>
+                     <div>{item.qty}</div>
+                     <AddCircleIcon onClick={() => props.add(item)}>+</AddCircleIcon>
+                    </div>
                   </td>
                   <td>{item.price}</td>
                   <td>{item.qty * item.price}</td>
