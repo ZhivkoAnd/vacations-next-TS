@@ -17,6 +17,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useState } from "react";
 import Link from "next/link";
 import AuthenticationMenu from "./AuthenticationMenu";
+import { usePathname } from "next/navigation";
 
 const pages = [
   {
@@ -43,6 +44,8 @@ interface Props {
 }
 
 const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
+  const pathname = usePathname();
+  console.log(pathname);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (e: React.MouseEvent<HTMLElement>) => {
@@ -102,7 +105,13 @@ const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
               <Link href={page.link} key={page.label}>
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: pathname.includes(page.label.toLowerCase())
+                      ? "red"
+                      : "white",
+                    display: "block",
+                  }}
                 >
                   {page.label}
                 </Button>
