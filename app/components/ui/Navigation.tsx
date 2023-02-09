@@ -17,22 +17,24 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useState } from "react";
 import Link from "next/link";
 import AuthenticationMenu from "./AuthenticationMenu";
-import { usePathname } from "next/navigation";
 
 const pages = [
   {
+    id:1,
     label: "Vacations",
     link: "/",
   },
-  {
+  {    id:2,
     label: "Testing",
     link: "/testing",
   },
   {
+    id:3,
     label: "Booking",
     link: "/booking",
   },
   {
+    id:4,
     label: "Admin",
     link: "/admin",
   },
@@ -44,15 +46,23 @@ interface Props {
 }
 
 const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
-  const pathname = usePathname();
-  console.log(pathname);
+
+ // const pathname = usePathname();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [activePage, setActivePage] = useState<any>(1);
 
   const handleOpenNavMenu = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(e.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (id:any) => {
+    pages.map((page)=> {
+      if (id === page.id) {
+       return;
+      } else {
+        setActivePage(id);
+      }
+    })
     setAnchorElNav(null);
   };
 
@@ -104,12 +114,11 @@ const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
             {pages.map((page) => (
               <Link href={page.link} key={page.label}>
                 <Button
-                  onClick={handleCloseNavMenu}
+                  onClick={() => handleCloseNavMenu(page.id)}
+                  className={activePage === page.id ? "navbar__link-active" : "navbar__link"}
                   sx={{
                     my: 2,
-                    color: pathname.includes(page.label.toLowerCase())
-                      ? "red"
-                      : "white",
+        
                     display: "block",
                   }}
                 >
