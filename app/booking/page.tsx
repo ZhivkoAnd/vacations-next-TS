@@ -63,7 +63,7 @@ const Booking = () => {
 
   const totalQuantity = cartItems.reduce((a: any, b: any) => a + b.qty, 0);
 
-  const removeItem = (clickedBooking: any) => {
+  const removeItem = (clickedBooking: BookingProps) => {
     setCartItems(cartItems.filter((e) => e.id !== clickedBooking.id));
   };
 
