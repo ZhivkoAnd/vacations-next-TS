@@ -1,24 +1,16 @@
-import {bookings} from "../../app/components/utils/BookingsData"
+import { bookings } from "../../app/components/utils/BookingsData";
+import routes from "../../db.json";
 
-export default function handler(req, res) {
-  const {method} = req;
-  console.log("method: ", method);
+export default function handler(request, response) {
+  const { method } = request;
 
-  switch(method) {
-    case 'GET':
-      // get data
-      res.status(200).json(bookings);
-      break;
+  if (method === "GET") {
+    return response.status(200).json(bookings);
+  }
 
-    case 'POST':
-      // post data
-      res.status(200).json({response: "POST successful"});
-      break;
-
-    default: 
-    res.setHeader("Allow", ["GET", "POST"]);
-    res.status(405).end(`Method ${method} Not allowed`)
+  if (method === "POST") {
+    const { body } = request;
+    bookings.push({ ...body, id: bookings.length + 1 });
+    return response.status(200).json(bookings);
   }
 }
-
-

@@ -8,8 +8,9 @@ const CRUD = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [id, setId] = useState("");
   const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     const fetchDataRead = async () => {
@@ -31,8 +32,7 @@ const CRUD = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log({ id: 1, title: "xaxa", price: 1, image: "" });
-    const data = { id, title };
+    const data = { title, price, image };
     fetch("http://localhost:4000/cities", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -66,14 +66,27 @@ const CRUD = () => {
 
       <form className="container" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>ID</label>
-          <input value={id} disabled className="form-control"></input>
-        </div>
-        <div className="form-group">
           <label>Title</label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="form-control"
+          ></input>
+        </div>
+        <div className="form-group">
+          <label>Price</label>
+          <input
+            value={price}
+            type="number"
+            onChange={(e) => setPrice(e.target.value)}
+            className="form-control"
+          ></input>
+        </div>
+        <div className="form-group">
+          <label>Image</label>
+          <input
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
             className="form-control"
           ></input>
         </div>
