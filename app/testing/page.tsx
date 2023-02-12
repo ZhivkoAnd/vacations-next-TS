@@ -14,7 +14,7 @@ interface Product {
 }
 
 const Testing = () => {
-  const router: any = useRouter();
+  const router = useRouter();
 
   const { user, logout }: any = UserAuth();
 

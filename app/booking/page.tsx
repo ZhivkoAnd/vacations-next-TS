@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Basket from "../components/ui/Basket";
 import { bookings } from "../components/utils/BookingsData";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -61,7 +61,7 @@ const Booking = () => {
     }
   };
 
-  const totalQuantity = cartItems.reduce((a: any, b: any) => a + b.qty, 0);
+  const totalQuantity = cartItems.reduce((a: number, b: any) => a + b.qty, 0);
 
   const removeItem = (clickedBooking: BookingProps) => {
     setCartItems(cartItems.filter((e) => e.id !== clickedBooking.id));
@@ -98,7 +98,7 @@ const Booking = () => {
           );
         })}
       </div>
-      <ShoppingCartIcon/> {totalQuantity}
+      <ShoppingCartIcon /> {totalQuantity}
       <div>
         {!cartItems.length ? (
           <div>Basket is empty</div>

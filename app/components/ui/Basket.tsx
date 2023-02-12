@@ -1,7 +1,7 @@
 import React from "react";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Basket = (props: any) => {
   // let totalPrice = 0;
@@ -11,7 +11,7 @@ const Basket = (props: any) => {
   // });
 
   const totalPrice = props.cartItems.reduce(
-    (a: any, b: any) => a + b.price * b.qty,
+    (a: number, b: { price: number; qty: number }) => a + b.price * b.qty,
     0
   );
 
@@ -31,12 +31,22 @@ const Basket = (props: any) => {
             if (item.qty > 0) {
               return (
                 <tr key={item.id}>
-                  <th scope="row"> <DeleteIcon onClick={() => props.removeItem(item)}>X</DeleteIcon>{item.title}</th>
+                  <th scope="row">
+                    {" "}
+                    <DeleteIcon onClick={() => props.removeItem(item)}>
+                      X
+                    </DeleteIcon>
+                    {item.title}
+                  </th>
                   <td>
-                    <div className = "vacation-panel__basket-button-group">
-                     <RemoveCircleIcon onClick={() => props.remove(item)}>-</RemoveCircleIcon>
-                     <div>{item.qty}</div>
-                     <AddCircleIcon onClick={() => props.add(item)}>+</AddCircleIcon>
+                    <div className="vacation-panel__basket-button-group">
+                      <RemoveCircleIcon onClick={() => props.remove(item)}>
+                        -
+                      </RemoveCircleIcon>
+                      <div>{item.qty}</div>
+                      <AddCircleIcon onClick={() => props.add(item)}>
+                        +
+                      </AddCircleIcon>
                     </div>
                   </td>
                   <td>{item.price}</td>

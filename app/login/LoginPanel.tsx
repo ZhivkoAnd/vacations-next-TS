@@ -22,7 +22,7 @@ const theme = createTheme();
 
 const SignIn = () => {
   const { login }: any = UserAuth();
-  const router: any = useRouter();
+  const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

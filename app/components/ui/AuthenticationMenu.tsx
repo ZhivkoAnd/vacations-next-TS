@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 const AuthenticationMenu = () => {
   const { user, logout }: any = UserAuth();
 
-  const router: any = useRouter();
+  const router = useRouter();
 
   const handleLogout = async () => {
     try {
