@@ -1,30 +1,50 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import VacationPanel from "../components/ui/VacationPanel";
 
-const Testing = () => {
-  const [task, setTask] = useState("");
+const CRUD = () => {
+  const [cities, setCities] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const addTask = () => {};
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api");
+        // If the response is NOT 'ok', it throws an error
+        if (!response.ok) {
+          throw new Error("Something went wrong!");
+        }
+        const fetchedData = await response.json();
+        setCities(fetchedData);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchData();
+    setIsLoading(false);
+  }, [cities]);
 
-  const handleFormSubmit = (e: any) => {
-    e.preventDefault();
-    console.log(e);
-    addTask();
-    setTask("");
-  };
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
 
   return (
-    <>
-      <form onSubmit={handleFormSubmit}>
-        {/* <input type="text" id="task" className="input" onInput={(e) => setTask(e.target.value)} required autoFocus maxLength={60} placeholder="Enter text"/> */}
-        {/* <label htmlFor="task" className="label">Enter Task</label> */}
-        <button className="btn" aria-label="Add task" type="submit">
-          Add
-        </button>
-      </form>
-    </>
+    <div className="container">
+      <div className="vacation-panels">
+        {cities?.map((city) => (
+          <div key={city.id}>
+            <VacationPanel city={city} />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
-export default Testing;
+export default CRUD;
