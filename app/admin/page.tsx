@@ -8,8 +8,11 @@ const CRUD = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [id, setId] = useState("");
+  const [title, setTitle] = useState("");
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataRead = async () => {
       try {
         const response = await fetch("http://localhost:3000/api");
         // If the response is NOT 'ok', it throws an error
@@ -22,9 +25,25 @@ const CRUD = () => {
         setError(error.message);
       }
     };
-    fetchData();
+    fetchDataRead();
     setIsLoading(false);
   }, [cities]);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log({ id: 1, title: "xaxa", price: 1, image: "" });
+    const data = { id: 1, title: "xaxa", price: 1, image: "" };
+    fetch("http://localhost:3000/api", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+      });
+    console.log(cities);
+  };
 
   if (error) {
     return <p>{error}</p>;
@@ -43,6 +62,23 @@ const CRUD = () => {
           </div>
         ))}
       </div>
+      <h1>Add new vacation</h1>
+
+      <form className="container" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>ID</label>
+          <input value={id} disabled className="form-control"></input>
+        </div>
+        <div className="form-group">
+          <label>Title</label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="form-control"
+          ></input>
+        </div>
+        <button type="submit">Add vacation</button>
+      </form>
     </div>
   );
 };
