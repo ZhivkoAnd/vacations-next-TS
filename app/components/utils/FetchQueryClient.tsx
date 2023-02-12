@@ -18,7 +18,7 @@ export const FetchVacationsClient = () => {
 };
 
 const fetchBookingQuery = async () => {
-  const response = await fetch("http://localhost:3000/api");
+  const response = await fetch("http://localhost:4000/cities");
   return response.json();
 };
 
