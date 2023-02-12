@@ -14,9 +14,7 @@ const CRUD = () => {
   useEffect(() => {
     const fetchDataRead = async () => {
       try {
-        const response = await fetch(
-          "https://vacations-next-ts.vercel.app/api"
-        );
+        const response = await fetch("http://localhost:4000/cities");
         // If the response is NOT 'ok', it throws an error
         if (!response.ok) {
           throw new Error("Something went wrong!");
@@ -34,8 +32,8 @@ const CRUD = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log({ id: 1, title: "xaxa", price: 1, image: "" });
-    const data = { id: 1, title: "xaxa", price: 1, image: "" };
-    fetch("http://localhost:3000/api", {
+    const data = { id, title };
+    fetch("http://localhost:4000/cities", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
