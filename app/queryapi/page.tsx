@@ -3,14 +3,9 @@
 import React, { useState, useEffect } from "react";
 import VacationPanel from "../components/ui/VacationPanel";
 import { FetchBookings } from "../components/utils/FetchQueryClient";
-import {
-  QueryClient,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const QueryAPI = () => {
-  const [cities, setCities] = useState([]);
   const [error, setError] = useState(null);
 
   const [title, setTitle] = useState("");
