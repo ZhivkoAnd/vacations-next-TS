@@ -14,7 +14,7 @@ const CRUD = () => {
 
   const fetchDataRead = async () => {
     try {
-      const response = await fetch("http://localhost:4000/cities");
+      const response = await fetch("http://localhost:3000/api");
       // If the response is NOT 'ok', it throws an error
       if (!response.ok) {
         throw new Error("Something went wrong!");
@@ -28,12 +28,13 @@ const CRUD = () => {
 
   useEffect(() => {
     fetchDataRead();
+    setIsLoading(false);
   }, []);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const data = { title, price, image };
-    fetch("http://localhost:4000/cities", {
+    fetch("http://localhost:3000/api", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
