@@ -12,23 +12,23 @@ const CRUD = () => {
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
 
-  useEffect(() => {
-    const fetchDataRead = async () => {
-      try {
-        const response = await fetch("http://localhost:4000/cities");
-        // If the response is NOT 'ok', it throws an error
-        if (!response.ok) {
-          throw new Error("Something went wrong!");
-        }
-        const fetchedData = await response.json();
-        setCities(fetchedData);
-      } catch (error) {
-        setError(error.message);
+  const fetchDataRead = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/cities");
+      // If the response is NOT 'ok', it throws an error
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
       }
-    };
+      const fetchedData = await response.json();
+      setCities(fetchedData);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  useEffect(() => {
     fetchDataRead();
-    setIsLoading(false);
-  }, [cities]);
+  }, []);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -42,7 +42,6 @@ const CRUD = () => {
       .then((result) => {
         console.log(result);
       });
-    console.log(cities);
   };
 
   if (error) {
