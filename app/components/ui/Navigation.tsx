@@ -20,23 +20,25 @@ import AuthenticationMenu from "./AuthenticationMenu";
 
 const pages = [
   {
-    id:1,
+    id: 1,
     label: "Vacations",
     link: "/",
   },
-  {    id:2,
-    label: "Testing",
-    link: "/testing",
-  },
+  { id: 2, label: "Testing", link: "/testing" },
   {
-    id:3,
+    id: 3,
     label: "Booking",
     link: "/booking",
   },
   {
-    id:4,
+    id: 4,
     label: "Admin",
     link: "/admin",
+  },
+  {
+    id: 5,
+    label: "QueryAPI",
+    link: "/queryapi",
   },
 ];
 
@@ -46,8 +48,7 @@ interface Props {
 }
 
 const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
-
- // const pathname = usePathname();
+  // const pathname = usePathname();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [activePage, setActivePage] = useState<any>(1);
 
@@ -55,14 +56,14 @@ const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
     setAnchorElNav(e.currentTarget);
   };
 
-  const handleCloseNavMenu = (id:any) => {
-    pages.map((page)=> {
+  const handleCloseNavMenu = (id: any) => {
+    pages.map((page) => {
       if (id === page.id) {
-       return;
+        return;
       } else {
         setActivePage(id);
       }
-    })
+    });
     setAnchorElNav(null);
   };
 
@@ -115,10 +116,14 @@ const ResponsiveAppBar = ({ lightMode, darkMode }: Props) => {
               <Link href={page.link} key={page.label}>
                 <Button
                   onClick={() => handleCloseNavMenu(page.id)}
-                  className={activePage === page.id ? "navbar__link-active" : "navbar__link"}
+                  className={
+                    activePage === page.id
+                      ? "navbar__link-active"
+                      : "navbar__link"
+                  }
                   sx={{
                     my: 2,
-        
+
                     display: "block",
                   }}
                 >
