@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import VacationPanel from "../components/ui/VacationPanel";
 import { FetchBookings } from "../components/utils/FetchQueryClient";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createData } from "../components/utils/FetchQueryClient";
+import AdminProductList from "../components/ui/AdminProductList";
 
 const QueryAPI = () => {
   const [error, setError] = useState(null);
@@ -15,16 +17,6 @@ const QueryAPI = () => {
   const { data, isLoading } = FetchBookings();
   const queryClient = useQueryClient();
 
-  const createData = async (data: {}) => {
-    const response = await fetch("http://localhost:3000/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    return response.json();
-  };
 
   const { mutateAsync } = useMutation(createData, {
     onSuccess: (data) => {
@@ -49,17 +41,7 @@ const QueryAPI = () => {
 
   return (
     <div className="container">
-      <div className="container">
-        <div className="vacation-panels">
-          {data?.map((city: any) => {
-            return (
-              <div key={city.id}>
-                <VacationPanel city={city} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
+     <AdminProductList data={data}/>
       <h1>Add new vacation</h1>
 
       <form className="container" onSubmit={handleSubmit}>
