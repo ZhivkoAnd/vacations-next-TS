@@ -3,17 +3,10 @@ import { useState } from "react";
 import Basket from "../components/ui/Basket";
 import bookings from "../../db.json";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { BookingProps } from "../types";
 
 const Booking = () => {
   const [cartItems, setCartItems] = useState([]);
-
-  interface BookingProps {
-    id: number;
-    title: string;
-    price: number;
-    image?: string;
-    qty?: number;
-  }
 
   const add = (clickedBooking: BookingProps) => {
     // Finds the item with the same id as the item we clicked
