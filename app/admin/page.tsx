@@ -17,8 +17,7 @@ const QueryAPI = () => {
   const { data, isLoading } = FetchBookings();
   const queryClient = useQueryClient();
 
-
-  const { mutateAsync } = useMutation(createData, {
+  const { mutateAsync, isError } = useMutation(createData, {
     onSuccess: (data) => {
       console.log("Success!", data);
     },
@@ -31,6 +30,10 @@ const QueryAPI = () => {
     queryClient.invalidateQueries(["bookings"]);
   };
 
+  const removeProduct = async (id: number) => {
+    await mutateAsync(id);
+  };
+
   if (error) {
     return <p>{error}</p>;
   }
@@ -41,7 +44,7 @@ const QueryAPI = () => {
 
   return (
     <div className="container">
-     <AdminProductList data={data}/>
+      <AdminProductList data={data} />
       <h1>Add new vacation</h1>
 
       <form className="container" onSubmit={handleSubmit}>
