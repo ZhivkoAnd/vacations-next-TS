@@ -4,14 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import VacationPanel from "../components/ui/VacationPanel";
 import { FetchBookings } from "../components/utils/FetchQueryClient";
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  image?: string;
-  qty?: number;
-}
+import { BookingProps } from "../types";
 
 const Testing = () => {
   const router = useRouter();
@@ -36,7 +29,7 @@ const Testing = () => {
       <button onClick={handleLogout}>Logout</button>
       <div className="container">
         <div className="vacation-panels">
-          {data?.cities.map((city: Product) => {
+          {data?.cities.map((city: BookingProps) => {
             return (
               <div key={city.id}>
                 <VacationPanel city={city} />

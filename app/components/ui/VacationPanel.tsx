@@ -1,14 +1,5 @@
 import React from "react";
-
-interface Product {
-  city: {
-    id: number;
-    title: string;
-    price: number;
-    image?: string;
-    qty?: number;
-  };
-}
+import { Product } from "../../types";
 
 const VacationPanel = ({ city }: Product) => {
   return (

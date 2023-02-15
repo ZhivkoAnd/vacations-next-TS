@@ -1,15 +1,5 @@
 import React from "react";
 
-interface Product {
-  city: {
-    id: number;
-    title: string;
-    price: number;
-    image?: string;
-    qty?: number;
-  };
-}
-
 const AdminProductList = ({ data }: any) => {
   return (
     <div>
