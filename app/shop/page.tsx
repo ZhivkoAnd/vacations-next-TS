@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Basket from "../components/ui/Basket";
-import { bookings } from "../components/utils/BookingsData";
+import bookings from "../../db.json";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Booking = () => {
@@ -73,7 +73,7 @@ const Booking = () => {
   return (
     <div className="container">
       <div className="vacation-panels">
-        {bookings.map((city) => {
+        {bookings.cities.map((city: any) => {
           return (
             <div className="vacation-panel" key={city.title}>
               <img

@@ -1,34 +1,48 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import VacationPanel from "../components/ui/VacationPanel";
-import { FetchBookings } from "../components/utils/FetchQueryClient";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createData } from "../components/utils/FetchQueryClient";
-import AdminProductList from "../components/ui/AdminProductList";
 
-const QueryAPI = () => {
+const CRUD = () => {
+  const [cities, setCities] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
 
-  const { data, isLoading } = FetchBookings();
-  const queryClient = useQueryClient();
+  const fetchDataRead = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api");
+      // If the response is NOT 'ok', it throws an error
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const fetchedData = await response.json();
+      setCities(fetchedData);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
+  useEffect(() => {
+    fetchDataRead();
+    setIsLoading(false);
+  }, []);
 
-  const { mutateAsync } = useMutation(createData, {
-    onSuccess: (data) => {
-      console.log("Success!", data);
-    },
-  });
-
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
     const data = { title, price, image };
-    await mutateAsync(data);
-    queryClient.invalidateQueries(["bookings"]);
+    fetch("http://localhost:3000/api", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+      });
   };
 
   if (error) {
@@ -41,7 +55,13 @@ const QueryAPI = () => {
 
   return (
     <div className="container">
-     <AdminProductList data={data}/>
+      <div className="vacation-panels">
+        {cities?.map((city) => (
+          <div key={city.id}>
+            <VacationPanel city={city} />
+          </div>
+        ))}
+      </div>
       <h1>Add new vacation</h1>
 
       <form className="container" onSubmit={handleSubmit}>
@@ -76,4 +96,4 @@ const QueryAPI = () => {
   );
 };
 
-export default QueryAPI;
+export default CRUD;

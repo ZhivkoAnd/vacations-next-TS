@@ -24,21 +24,15 @@ const pages = [
     label: "Vacations",
     link: "/",
   },
-  { id: 2, label: "Testing", link: "/testing" },
+  {
+    id: 2,
+    label: "Shop",
+    link: "/shop",
+  },
   {
     id: 3,
-    label: "Booking",
-    link: "/booking",
-  },
-  {
-    id: 4,
     label: "Admin",
     link: "/admin",
-  },
-  {
-    id: 5,
-    label: "QueryAPI",
-    link: "/queryapi",
   },
 ];
 
