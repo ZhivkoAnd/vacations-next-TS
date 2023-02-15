@@ -22,7 +22,7 @@ const AdminProductList = ({data} : any) => {
     </tr>
   </thead>
   <tbody>
-    {data?.map((city: any) => {
+    {data?.cities.map((city: any) => {
         return (
           <tr key={city.id}>
             <th scope="row">

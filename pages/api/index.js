@@ -5,12 +5,12 @@ export default function handler(request, response) {
   const { method } = request;
 
   if (method === "GET") {
-    return response.status(200).json(bookings);
+    return response.status(200).json(routes);
   }
 
   if (method === "POST") {
     const { body } = request;
-    bookings.push({ ...body, id: bookings.length + 1 });
-    return response.status(200).json(bookings);
+    routes.cities.push({ ...body, id: routes.length + 1 });
+    return response.status(200).json(routes);
   }
 }
