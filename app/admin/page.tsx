@@ -1,21 +1,33 @@
 "use client";
 
 import React, { useState } from "react";
-import VacationPanel from "../components/ui/VacationPanel";
-import { FetchBookings } from "../components/utils/FetchQueryClient";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createData } from "../components/utils/FetchQueryClient";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AdminProductList from "../components/ui/AdminProductList";
 
 const QueryAPI = () => {
-  const [error, setError] = useState(null);
-
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
 
-  const { data, isLoading } = FetchBookings();
   const queryClient = useQueryClient();
+
+  const fetchBookingQuery = async () => {
+    const response = await fetch("http://localhost:3000/api");
+    return response.json();
+  };
+
+  const fetchBookings = useQuery(["bookings"], fetchBookingQuery);
+
+  const createData = async (data: {}) => {
+    const response = await fetch("http://localhost:3000/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  };
 
   const { mutateAsync, isError } = useMutation(createData, {
     onSuccess: (data) => {
@@ -34,17 +46,17 @@ const QueryAPI = () => {
     await mutateAsync(id);
   };
 
-  if (error) {
-    return <p>{error}</p>;
+  if (fetchBookings.isLoading) {
+    return <div>Loading...</div>;
   }
 
-  if (isLoading) {
-    return <div>Loading</div>;
+  if (fetchBookings.isError) {
+    return <div>There was an error</div>;
   }
 
   return (
     <div className="container">
-      <AdminProductList data={data} />
+      <AdminProductList data={fetchBookings.data} />
       <h1>Add new vacation</h1>
 
       <form className="container" onSubmit={handleSubmit}>
@@ -73,7 +85,9 @@ const QueryAPI = () => {
             className="form-control"
           ></input>
         </div>
-        <button type="submit">Add vacation</button>
+        <button type="submit" disabled={fetchBookings.isLoading}>
+          Add vacation
+        </button>
       </form>
     </div>
   );
