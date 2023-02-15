@@ -36,7 +36,7 @@ const Testing = () => {
       <button onClick={handleLogout}>Logout</button>
       <div className="container">
         <div className="vacation-panels">
-          {data?.map((city: Product) => {
+          {data?.cities.map((city: Product) => {
             return (
               <div key={city.id}>
                 <VacationPanel city={city} />
