@@ -29,7 +29,7 @@ const QueryAPI = () => {
     return response.json();
   };
 
-  const { mutateAsync, isError } = useMutation(createData, {
+  const newMutation = useMutation(createData, {
     onSuccess: (data) => {
       console.log("Success!", data);
     },
@@ -38,13 +38,13 @@ const QueryAPI = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     const data = { title, price, image };
-    await mutateAsync(data);
+    await newMutation.mutateAsync(data);
     queryClient.invalidateQueries(["bookings"]);
   };
 
-  const removeProduct = async (id: number) => {
-    await mutateAsync(id);
-  };
+  // const removeProduct = async (id: number) => {
+  //   await mutateAsync(id);
+  // };
 
   if (fetchBookings.isLoading) {
     return <div>Loading...</div>;
@@ -85,7 +85,7 @@ const QueryAPI = () => {
             className="form-control"
           ></input>
         </div>
-        <button type="submit" disabled={fetchBookings.isLoading}>
+        <button type="submit" disabled={newMutation.isLoading}>
           Add vacation
         </button>
       </form>
