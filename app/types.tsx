@@ -8,6 +8,7 @@ export interface BookingProps {
 
 export interface Product {
   [data: string]: {
+    cities?: [];
     id: number;
     title: string;
     price: number;

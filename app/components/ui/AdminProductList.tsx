@@ -1,6 +1,7 @@
 import React from "react";
+import { Product } from "../../types";
 
-const AdminProductList = ({ data }: any) => {
+const AdminProductList = ({ data }: Product) => {
   return (
     <div>
       <table className="table table-striped table-light">
