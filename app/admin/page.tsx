@@ -44,7 +44,6 @@ const QueryAPI = () => {
     queryClient.invalidateQueries(["bookings"]);
   };
 
-
   useEffect(()=>{
      setFilters(fetchBookings?.data?.cities)
   },[fetchBookings.data])
@@ -53,19 +52,13 @@ const QueryAPI = () => {
     setFilters(fetchBookings?.data?.cities)
  },[fetchBookings.data])
 
-
-
  const setFilterDateAscending = () => {
     setFilters([...filterss].sort((a:any, b: any)=> a.price-b.price));
 };
 
-
-
 const setFilterDateDescending = () => {
   setFilters([...filterss].sort((a:any, b: any)=> b.price-a.price));
 };
-
-
 
   // const removeProduct = async (id: number) => {
   //   await mutateAsync(id);
