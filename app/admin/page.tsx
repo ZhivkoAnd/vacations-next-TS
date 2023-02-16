@@ -56,25 +56,16 @@ const QueryAPI = () => {
 
 
  const setFilterDateAscending = () => {
-    setFilters(filterDateAscending(filterss));
+    setFilters([...filterss].sort((a:any, b: any)=> a.price-b.price));
 };
 
- const filterDateAscending = (arr: any) => {
-  return [...arr].sort((a, b) => {
-    return a.price - b.price;
-  });
-};
 
 
 const setFilterDateDescending = () => {
-  setFilters(filterDateDescending(filterss));
+  setFilters([...filterss].sort((a:any, b: any)=> b.price-a.price));
 };
 
-const filterDateDescending = (arr: any) => {
-return [...arr].sort((a, b) => {
-  return b.price - a.price;
-});
-};
+
 
   // const removeProduct = async (id: number) => {
   //   await mutateAsync(id);
