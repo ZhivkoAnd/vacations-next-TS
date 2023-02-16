@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AdminProductList from "../components/ui/AdminProductList";
 
@@ -16,7 +16,11 @@ const QueryAPI = () => {
     return response.json();
   };
 
-  const fetchBookings = useQuery(["bookings"], fetchBookingQuery);
+  const fetchBookings = useQuery(["bookings"], fetchBookingQuery, {
+    onSuccess(data) {
+      setFilters(data.cities);
+    },
+  });
 
   const createData = async (data: {}) => {
     const response = await fetch("http://localhost:3000/api", {
@@ -43,10 +47,6 @@ const QueryAPI = () => {
     await newMutation.mutateAsync(data);
     queryClient.invalidateQueries(["bookings"]);
   };
-
-  useEffect(() => {
-    setFilters(fetchBookings.data?.cities);
-  }, [fetchBookings.data]);
 
   const setFilterDateAscending = () => {
     setFilters(
