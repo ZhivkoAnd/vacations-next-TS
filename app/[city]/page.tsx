@@ -2,25 +2,7 @@ import React from "react";
 // import Image from "next/image";
 import { fetchVacationsServer } from "../components/utils/FetchQueryServer";
 import ImagesGallery from "./ImagesGallery";
-interface Vacations {
-  params?: {
-    city: string;
-  };
-  items: {
-    fields: {
-      date?: Date;
-      title?: string;
-      slug?: string;
-      gallery?: {
-        fields: {
-          file: {
-            url: string;
-          };
-        };
-      }[];
-    };
-  }[];
-}
+import { Vacations } from "../types";
 
 const Gallery = async ({ params: { city } }: Vacations) => {
   const vacations: Vacations = await fetchVacationsServer();

@@ -1,31 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { VacationPanelProps } from "../../types";
 
-interface Props {
-  item: {
-    fields: {
-      thumbnail: {
-        fields: {
-          file: {
-            url: string;
-            details: {
-              image: {
-                width: number;
-                height: number;
-              };
-            };
-          };
-        };
-      };
-      date: string;
-      title: string;
-      slug: string;
-    };
-  };
-}
 
-const VacationPanel = ({ item }: Props) => {
+
+const VacationPanel = ({ item }: VacationPanelProps) => {
   return (
     <div className="vacation-panel">
       <Image
