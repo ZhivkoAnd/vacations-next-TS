@@ -60,6 +60,11 @@ const QueryAPI = () => {
     );
   };
 
+  if (fetchBookings.data?.cities) {
+    console.log(fetchBookings.data.cities);
+    console.log([...fetchBookings.data.cities]);
+  }
+
   // const removeProduct = async (id: number) => {
   //   await mutateAsync(id);
   // };
