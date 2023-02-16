@@ -48,10 +48,6 @@ const QueryAPI = () => {
      setFilters(fetchBookings?.data?.cities)
   },[fetchBookings.data])
 
-  useEffect(()=>{
-    setFilters(fetchBookings?.data?.cities)
- },[fetchBookings.data])
-
  const setFilterDateAscending = () => {
     setFilters([...filterss].sort((a:any, b: any)=> a.price-b.price));
 };
