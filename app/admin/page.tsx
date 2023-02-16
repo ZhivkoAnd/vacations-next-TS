@@ -60,6 +60,22 @@ const QueryAPI = () => {
     );
   };
 
+  const setFilterTitleAscending = () => {
+    setFilters(
+      [...fetchBookings.data.cities].sort((a: any, b: any) =>
+        a.title.localeCompare(b.title)
+      )
+    );
+  };
+
+  const setFilterTitleDescending = () => {
+    setFilters(
+      [...fetchBookings.data.cities].sort((a: any, b: any) =>
+        b.title.localeCompare(a.title)
+      )
+    );
+  };
+
   // const removeProduct = async (id: number) => {
   //   await mutateAsync(id);
   // };
@@ -78,6 +94,8 @@ const QueryAPI = () => {
       <h1>Add new vacation</h1>
       <button onClick={setFilterDateAscending}>filter THIS</button>
       <button onClick={setFilterDateDescending}>filter THIS</button>
+      <button onClick={setFilterTitleAscending}>filter THIS</button>
+      <button onClick={setFilterTitleDescending}>filter THIS</button>
 
       <form className="container" onSubmit={handleSubmit}>
         <div className="form-group">
