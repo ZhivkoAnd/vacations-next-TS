@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AdminProductList from "../components/ui/AdminProductList";
 
@@ -29,6 +29,8 @@ const QueryAPI = () => {
     return response.json();
   };
 
+  const [filterss, setFilters] = useState(fetchBookings?.data)
+
   const newMutation = useMutation(createData, {
     onSuccess: (data) => {
       console.log("Success!", data);
@@ -41,6 +43,38 @@ const QueryAPI = () => {
     await newMutation.mutateAsync(data);
     queryClient.invalidateQueries(["bookings"]);
   };
+
+
+  useEffect(()=>{
+     setFilters(fetchBookings?.data?.cities)
+  },[fetchBookings.data])
+
+  useEffect(()=>{
+    setFilters(fetchBookings?.data?.cities)
+ },[fetchBookings.data])
+
+
+
+ const setFilterDateAscending = () => {
+    setFilters(filterDateAscending(filterss));
+};
+
+ const filterDateAscending = (arr: any) => {
+  return [...arr].sort((a, b) => {
+    return a.price - b.price;
+  });
+};
+
+
+const setFilterDateDescending = () => {
+  setFilters(filterDateDescending(filterss));
+};
+
+const filterDateDescending = (arr: any) => {
+return [...arr].sort((a, b) => {
+  return b.price - a.price;
+});
+};
 
   // const removeProduct = async (id: number) => {
   //   await mutateAsync(id);
@@ -56,8 +90,10 @@ const QueryAPI = () => {
 
   return (
     <div className="container">
-      <AdminProductList data={fetchBookings.data} />
+      <AdminProductList data={filterss} />
       <h1>Add new vacation</h1>
+      <button onClick={setFilterDateAscending}>filter THIS</button>
+      <button onClick={setFilterDateDescending}>filter THIS</button>
 
       <form className="container" onSubmit={handleSubmit}>
         <div className="form-group">

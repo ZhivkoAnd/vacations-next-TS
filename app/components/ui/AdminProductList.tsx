@@ -1,7 +1,7 @@
 import React from "react";
 import { Product } from "../../types";
 
-const AdminProductList = ({ data }: Product) => {
+const AdminProductList = ({ data }: any) => {
   return (
     <div>
       <table className="table table-striped table-light">
@@ -12,7 +12,7 @@ const AdminProductList = ({ data }: Product) => {
           </tr>
         </thead>
         <tbody>
-          {data?.cities.map((city: any) => {
+          {data?.map((city: any) => {
             return (
               <tr key={city.id}>
                 <th scope="row">{city.title}</th>
