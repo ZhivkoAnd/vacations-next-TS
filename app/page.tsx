@@ -37,16 +37,12 @@ const Vacations = () => {
   const setFilterDateAscending = () => {
     if (inputData && inputData.length) {
       setFilteredCities(filterDateAscending(inputData));
-    } else {
-      setFilteredCities(inputData);
     }
   };
 
   const setFilterDateDescending = () => {
     if (inputData && inputData.length) {
       setFilteredCities(filterDateDescending(inputData));
-    } else {
-      setFilteredCities(inputData);
     }
   };
 

@@ -4,6 +4,12 @@ import React, { useState,useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AdminProductList from "../components/ui/AdminProductList";
 import ActionBar from "../components/ui/ActionBar";
+import {
+  filterPriceAscending,
+  filterPriceDescending,
+  filterTitleAscending,
+  filterTitleDescending,
+} from "../components/utils/FilterFunctions";
 
 const QueryAPI = () => {
   const [title, setTitle] = useState("");
@@ -55,47 +61,27 @@ const QueryAPI = () => {
   city.title.toLowerCase().includes(inputQuery.toLowerCase())
 );
 
-
   const setFilterPriceAscending = () => {
-    if (inputData && inputData.length) { 
-      setFilters(
-        [...inputData].sort((a: any, b: any) => a.price - b.price)
-      );
-    } else {
-      setFilters([...fetchBookings.data.cities])
+    if (inputData && inputData.length) {
+      setFilters(filterPriceAscending(inputData));
     }
   };
 
   const setFilterPriceDescending = () => {
-    if (inputData && inputData.length) { 
-      setFilters(
-        [...inputData].sort((a: any, b: any) => b.price - a.price)
-      );
-    } else {
-      setFilters([...fetchBookings.data.cities])
+    if (inputData && inputData.length) {
+      setFilters(filterPriceDescending(inputData));
     }
   };
+
   const setFilterTitleAscending = () => {
     if (inputData && inputData.length) {
-    setFilters(
-      [...inputData].sort((a: any, b: any) =>
-        a.title.localeCompare(b.title)
-      )
-    );
-    } else {
-      setFilters([...fetchBookings.data.cities])
+      setFilters(filterTitleAscending(inputData));
     }
   };
 
   const setFilterTitleDescending = () => {
     if (inputData && inputData.length) {
-    setFilters(
-      [...inputData].sort((a: any, b: any) =>
-        b.title.localeCompare(a.title)
-      )
-    );
-    } else {
-      setFilters([...fetchBookings.data.cities])
+      setFilters(filterTitleDescending(inputData));
     }
   };
 
@@ -126,11 +112,6 @@ const QueryAPI = () => {
         setFilterTitleDescending={setFilterTitleDescending} admin={true}/>
       <AdminProductList data={filterss} />
       <h1>Add new vacation</h1>
-      <button onClick={setFilterPriceAscending}>filter THIS</button>
-      <button onClick={setFilterPriceDescending}>filter THIS</button>
-      <button onClick={setFilterTitleAscending}>filter THIS</button>
-      <button onClick={setFilterTitleDescending}>filter THIS</button>
-
       <form className="container" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Title</label>
