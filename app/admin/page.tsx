@@ -57,36 +57,55 @@ const QueryAPI = () => {
 
 
   const setFilterDateAscending = () => {
-    setFilters(
-      [...fetchBookings.data.cities].sort((a: any, b: any) => a.price - b.price)
-    );
+    if (inputData && inputData.length) { 
+      setFilters(
+        [...inputData].sort((a: any, b: any) => a.price - b.price)
+      );
+    } else {
+      setFilters([...fetchBookings.data.cities])
+    }
   };
 
   const setFilterDateDescending = () => {
-    setFilters(
-      [...fetchBookings.data.cities].sort((a: any, b: any) => b.price - a.price)
-    );
+    if (inputData && inputData.length) { 
+      setFilters(
+        [...inputData].sort((a: any, b: any) => b.price - a.price)
+      );
+    } else {
+      setFilters([...fetchBookings.data.cities])
+    }
   };
-
   const setFilterTitleAscending = () => {
+    if (inputData && inputData.length) {
     setFilters(
-      [...fetchBookings.data.cities].sort((a: any, b: any) =>
+      [...inputData].sort((a: any, b: any) =>
         a.title.localeCompare(b.title)
       )
     );
+    } else {
+      setFilters([...fetchBookings.data.cities])
+    }
   };
 
   const setFilterTitleDescending = () => {
+    if (inputData && inputData.length) {
     setFilters(
-      [...fetchBookings.data.cities].sort((a: any, b: any) =>
+      [...inputData].sort((a: any, b: any) =>
         b.title.localeCompare(a.title)
       )
     );
+    } else {
+      setFilters([...fetchBookings.data.cities])
+    }
   };
 
   useEffect(()=> {
-   setFilters(inputData)
-  },[inputQuery, inputData])
+    if (inputData && inputData.length) {
+      setFilters(inputData);
+    } else {
+      setFilters([]);
+    }
+  },[inputQuery])
 
   // const removeProduct = async (id: number) => {
   //   await mutateAsync(id);
