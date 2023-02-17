@@ -59,3 +59,14 @@ export interface VacationPanelProps {
     };
   };
 }
+export interface FilterProps {
+  setFilterDateAscending?: () => void;
+  setFilterDateDescending?: () => void;
+  setFilterTitleAscending?: () => void;
+  setFilterTitleDescending?: () => void;
+  setFilterPriceAscending?: () => void;
+  setFilterPriceDescending?: () => void;
+  setInputQuery?: (e: string) => void;
+  inputQuery?: string;
+  isAdminPage?: boolean;
+}

@@ -1,18 +1,7 @@
 import React from "react";
 import Search from "./Search";
 import Filters from "./Filters";
-
-interface Props {
-  inputQuery: string;
-  setInputQuery: any;
-  setFilterDateAscending?: () => void;
-  setFilterDateDescending?: () => void;
-  setFilterTitleAscending?: () => void;
-  setFilterTitleDescending?: () => void;
-  setFilterPriceAscending?: () => void;
-  setFilterPriceDescending?: () => void;
-  isAdminPage?: boolean
-}
+import { FilterProps } from "../../types";
 
 const ActionBar = ({
   inputQuery,
@@ -23,9 +12,8 @@ const ActionBar = ({
   setFilterTitleDescending,
   setFilterPriceAscending,
   setFilterPriceDescending,
-  isAdminPage
-
-}: Props) => {
+  isAdminPage,
+}: FilterProps) => {
   return (
     <div className="action-bar">
       <Filters

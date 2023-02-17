@@ -5,16 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useState } from "react";
-
-interface Props {
-  setFilterDateAscending?: () => void;
-  setFilterDateDescending?: () => void;
-  setFilterTitleAscending?: () => void;
-  setFilterTitleDescending?: () => void;
-  setFilterPriceAscending?: () => void;
-  setFilterPriceDescending?: () => void;
-  isAdminPage?: boolean,
-}
+import { FilterProps } from "../../types";
 
 const BasicSelect = ({
   setFilterDateAscending,
@@ -22,8 +13,9 @@ const BasicSelect = ({
   setFilterTitleAscending,
   setFilterTitleDescending,
   setFilterPriceAscending,
-  setFilterPriceDescending, isAdminPage
-}: Props) => {
+  setFilterPriceDescending,
+  isAdminPage,
+}: FilterProps) => {
   const [sort, setSort] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,25 +36,32 @@ const BasicSelect = ({
           onChange={handleChange}
           value={sort}
         >
-          {!isAdminPage && <div><MenuItem value="ascendingd" onClick={setFilterDateAscending}>
-            Date ascending
-          </MenuItem>
-          <MenuItem value="descendingd" onClick={setFilterDateDescending}>
-            Date descending
-          </MenuItem></div>}
-           {isAdminPage && <div><MenuItem value="ascendingt" onClick={setFilterTitleAscending}>
-           Title ascending
-          </MenuItem>
-          <MenuItem value="descendingt" onClick={setFilterTitleDescending}>
-          Title descending
-          </MenuItem>
-          <MenuItem value="ascendingp" onClick={setFilterPriceAscending}>
-            Price ascending
-          </MenuItem>
-          <MenuItem value="descendingp" onClick={setFilterPriceDescending}>
-          Price descending
-          </MenuItem></div>}
-          
+          {!isAdminPage && (
+            <div>
+              <MenuItem value="ascendingd" onClick={setFilterDateAscending}>
+                Date ascending
+              </MenuItem>
+              <MenuItem value="descendingd" onClick={setFilterDateDescending}>
+                Date descending
+              </MenuItem>
+            </div>
+          )}
+          {isAdminPage && (
+            <div>
+              <MenuItem value="ascendingt" onClick={setFilterTitleAscending}>
+                Title ascending
+              </MenuItem>
+              <MenuItem value="descendingt" onClick={setFilterTitleDescending}>
+                Title descending
+              </MenuItem>
+              <MenuItem value="ascendingp" onClick={setFilterPriceAscending}>
+                Price ascending
+              </MenuItem>
+              <MenuItem value="descendingp" onClick={setFilterPriceDescending}>
+                Price descending
+              </MenuItem>
+            </div>
+          )}
         </Select>
       </FormControl>
     </Box>
