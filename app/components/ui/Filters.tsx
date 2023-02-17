@@ -7,13 +7,23 @@ import Select from "@mui/material/Select";
 import { useState } from "react";
 
 interface Props {
-  setFilterDateAscending: () => void;
-  setFilterDateDescending: () => void;
+  setFilterDateAscending?: () => void;
+  setFilterDateDescending?: () => void;
+  setFilterTitleAscending?: () => void;
+  setFilterTitleDescending?: () => void;
+  setFilterPriceAscending?: () => void;
+  setFilterPriceDescending?: () => void;
+  admin?: boolean,
+  user?: boolean
 }
 
 const BasicSelect = ({
   setFilterDateAscending,
   setFilterDateDescending,
+  setFilterTitleAscending,
+  setFilterTitleDescending,
+  setFilterPriceAscending,
+  setFilterPriceDescending, admin, user
 }: Props) => {
   const [sort, setSort] = useState("");
 
@@ -35,12 +45,25 @@ const BasicSelect = ({
           onChange={handleChange}
           value={sort}
         >
-          <MenuItem value="ascending" onClick={setFilterDateAscending}>
+          {user && <div><MenuItem value="ascendingd" onClick={setFilterDateAscending}>
             Date ascending
           </MenuItem>
-          <MenuItem value="descending" onClick={setFilterDateDescending}>
+          <MenuItem value="descendingd" onClick={setFilterDateDescending}>
             Date descending
+          </MenuItem></div>}
+           {admin && <div><MenuItem value="ascendingt" onClick={setFilterTitleAscending}>
+           Title ascending
           </MenuItem>
+          <MenuItem value="descendingt" onClick={setFilterTitleDescending}>
+          Title descending
+          </MenuItem>
+          <MenuItem value="ascendingp" onClick={setFilterPriceAscending}>
+            Price ascending
+          </MenuItem>
+          <MenuItem value="descendingp" onClick={setFilterPriceDescending}>
+          Price descending
+          </MenuItem></div>}
+          
         </Select>
       </FormControl>
     </Box>

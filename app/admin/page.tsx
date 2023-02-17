@@ -56,7 +56,7 @@ const QueryAPI = () => {
 );
 
 
-  const setFilterDateAscending = () => {
+  const setFilterPriceAscending = () => {
     if (inputData && inputData.length) { 
       setFilters(
         [...inputData].sort((a: any, b: any) => a.price - b.price)
@@ -66,7 +66,7 @@ const QueryAPI = () => {
     }
   };
 
-  const setFilterDateDescending = () => {
+  const setFilterPriceDescending = () => {
     if (inputData && inputData.length) { 
       setFilters(
         [...inputData].sort((a: any, b: any) => b.price - a.price)
@@ -121,11 +121,13 @@ const QueryAPI = () => {
 
   return (
     <div className="container">
-      <ActionBar inputQuery={inputQuery} setInputQuery={setInputQuery}/>
+      <ActionBar inputQuery={inputQuery} setInputQuery={setInputQuery} setFilterPriceAscending={setFilterPriceAscending}
+        setFilterPriceDescending={setFilterPriceDescending} setFilterTitleAscending={setFilterTitleAscending}
+        setFilterTitleDescending={setFilterTitleDescending} admin={true}/>
       <AdminProductList data={filterss} />
       <h1>Add new vacation</h1>
-      <button onClick={setFilterDateAscending}>filter THIS</button>
-      <button onClick={setFilterDateDescending}>filter THIS</button>
+      <button onClick={setFilterPriceAscending}>filter THIS</button>
+      <button onClick={setFilterPriceDescending}>filter THIS</button>
       <button onClick={setFilterTitleAscending}>filter THIS</button>
       <button onClick={setFilterTitleDescending}>filter THIS</button>
 

@@ -71,6 +71,7 @@ const Vacations = () => {
         setInputQuery={setInputQuery}
         setFilterDateAscending={setFilterDateAscending}
         setFilterDateDescending={setFilterDateDescending}
+        user={true}
       />
       {noVacationFound ? <div>NOTHING HERE</div> : ""}
       {filteredCities.length ? (
