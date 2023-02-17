@@ -5,8 +5,8 @@ import Filters from "./Filters";
 interface Props {
   inputQuery: string;
   setInputQuery: any;
-  setFilterDateAscending: () => void;
-  setFilterDateDescending: () => void;
+  setFilterDateAscending?: () => void;
+  setFilterDateDescending?: () => void;
 }
 
 const ActionBar = ({

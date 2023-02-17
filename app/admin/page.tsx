@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AdminProductList from "../components/ui/AdminProductList";
+import ActionBar from "../components/ui/ActionBar";
 
 const QueryAPI = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
+  const [inputQuery, setInputQuery] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -48,6 +50,12 @@ const QueryAPI = () => {
     queryClient.invalidateQueries(["bookings"]);
   };
 
+
+  const inputData = fetchBookings.data?.cities.filter((city:any) =>
+  city.title.toLowerCase().includes(inputQuery.toLowerCase())
+);
+
+
   const setFilterDateAscending = () => {
     setFilters(
       [...fetchBookings.data.cities].sort((a: any, b: any) => a.price - b.price)
@@ -76,6 +84,10 @@ const QueryAPI = () => {
     );
   };
 
+  useEffect(()=> {
+   setFilters(inputData)
+  },[inputQuery, inputData])
+
   // const removeProduct = async (id: number) => {
   //   await mutateAsync(id);
   // };
@@ -90,6 +102,7 @@ const QueryAPI = () => {
 
   return (
     <div className="container">
+      <ActionBar inputQuery={inputQuery} setInputQuery={setInputQuery}/>
       <AdminProductList data={filterss} />
       <h1>Add new vacation</h1>
       <button onClick={setFilterDateAscending}>filter THIS</button>
