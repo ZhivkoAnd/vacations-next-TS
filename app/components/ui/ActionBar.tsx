@@ -11,8 +11,7 @@ interface Props {
   setFilterTitleDescending?: () => void;
   setFilterPriceAscending?: () => void;
   setFilterPriceDescending?: () => void;
-  admin?: boolean
-  user?: boolean
+  isAdminPage?: boolean
 }
 
 const ActionBar = ({
@@ -24,7 +23,7 @@ const ActionBar = ({
   setFilterTitleDescending,
   setFilterPriceAscending,
   setFilterPriceDescending,
-  admin, user
+  isAdminPage
 
 }: Props) => {
   return (
@@ -36,7 +35,7 @@ const ActionBar = ({
         setFilterTitleDescending={setFilterTitleDescending}
         setFilterPriceAscending={setFilterPriceAscending}
         setFilterPriceDescending={setFilterPriceDescending}
-        admin={admin} user={user}
+        isAdminPage={isAdminPage}
       />
       <Search inputQuery={inputQuery} setInputQuery={setInputQuery} />
     </div>

@@ -13,8 +13,7 @@ interface Props {
   setFilterTitleDescending?: () => void;
   setFilterPriceAscending?: () => void;
   setFilterPriceDescending?: () => void;
-  admin?: boolean,
-  user?: boolean
+  isAdminPage?: boolean,
 }
 
 const BasicSelect = ({
@@ -23,7 +22,7 @@ const BasicSelect = ({
   setFilterTitleAscending,
   setFilterTitleDescending,
   setFilterPriceAscending,
-  setFilterPriceDescending, admin, user
+  setFilterPriceDescending, isAdminPage
 }: Props) => {
   const [sort, setSort] = useState("");
 
@@ -45,13 +44,13 @@ const BasicSelect = ({
           onChange={handleChange}
           value={sort}
         >
-          {user && <div><MenuItem value="ascendingd" onClick={setFilterDateAscending}>
+          {!isAdminPage && <div><MenuItem value="ascendingd" onClick={setFilterDateAscending}>
             Date ascending
           </MenuItem>
           <MenuItem value="descendingd" onClick={setFilterDateDescending}>
             Date descending
           </MenuItem></div>}
-           {admin && <div><MenuItem value="ascendingt" onClick={setFilterTitleAscending}>
+           {isAdminPage && <div><MenuItem value="ascendingt" onClick={setFilterTitleAscending}>
            Title ascending
           </MenuItem>
           <MenuItem value="descendingt" onClick={setFilterTitleDescending}>
