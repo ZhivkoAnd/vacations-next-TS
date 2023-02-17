@@ -109,7 +109,7 @@ const QueryAPI = () => {
     <div className="container">
       <ActionBar inputQuery={inputQuery} setInputQuery={setInputQuery} setFilterPriceAscending={setFilterPriceAscending}
         setFilterPriceDescending={setFilterPriceDescending} setFilterTitleAscending={setFilterTitleAscending}
-        setFilterTitleDescending={setFilterTitleDescending} isAdminPage={true}/>
+        setFilterTitleDescending={setFilterTitleDescending} isAdminPage/>
       <AdminProductList data={filterss} />
       <h1>Add new vacation</h1>
       <form className="container" onSubmit={handleSubmit}>
