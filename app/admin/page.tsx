@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AdminProductList from "../components/ui/AdminProductList";
 import ActionBar from "../components/ui/ActionBar";
@@ -56,10 +56,9 @@ const QueryAPI = () => {
     queryClient.invalidateQueries(["bookings"]);
   };
 
-
-  const inputData = fetchBookings.data?.cities.filter((city:any) =>
-  city.title.toLowerCase().includes(inputQuery.toLowerCase())
-);
+  const inputData = fetchBookings.data?.cities.filter((city: any) =>
+    city.title.toLowerCase().includes(inputQuery.toLowerCase())
+  );
 
   const setFilterPriceAscending = () => {
     if (inputData && inputData.length) {
@@ -85,13 +84,13 @@ const QueryAPI = () => {
     }
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     if (inputData && inputData.length) {
       setFilters(inputData);
     } else {
       setFilters([]);
     }
-  },[inputQuery])
+  }, [inputQuery]);
 
   // const removeProduct = async (id: number) => {
   //   await mutateAsync(id);
@@ -107,9 +106,15 @@ const QueryAPI = () => {
 
   return (
     <div className="container">
-      <ActionBar inputQuery={inputQuery} setInputQuery={setInputQuery} setFilterPriceAscending={setFilterPriceAscending}
-        setFilterPriceDescending={setFilterPriceDescending} setFilterTitleAscending={setFilterTitleAscending}
-        setFilterTitleDescending={setFilterTitleDescending} isAdminPage/>
+      <ActionBar
+        inputQuery={inputQuery}
+        setInputQuery={setInputQuery}
+        setFilterPriceAscending={setFilterPriceAscending}
+        setFilterPriceDescending={setFilterPriceDescending}
+        setFilterTitleAscending={setFilterTitleAscending}
+        setFilterTitleDescending={setFilterTitleDescending}
+        isAdminPage
+      />
       <AdminProductList data={filterss} />
       <h1>Add new vacation</h1>
       <form className="container" onSubmit={handleSubmit}>

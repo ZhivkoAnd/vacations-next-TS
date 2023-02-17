@@ -28,41 +28,52 @@ const BasicSelect = ({
         <InputLabel id="demo-simple-select-label" sx={{ color: "white" }}>
           Sort by
         </InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="filter"
-          sx={{ color: "white" }}
-          onChange={handleChange}
-          value={sort}
-        >
-          {!isAdminPage && (
-            <div>
-              <MenuItem value="ascendingd" onClick={setFilterDateAscending}>
-                Date ascending
-              </MenuItem>
-              <MenuItem value="descendingd" onClick={setFilterDateDescending}>
-                Date descending
-              </MenuItem>
-            </div>
-          )}
-          {isAdminPage && (
-            <div>
-              <MenuItem value="ascendingt" onClick={setFilterTitleAscending}>
-                Title ascending
-              </MenuItem>
-              <MenuItem value="descendingt" onClick={setFilterTitleDescending}>
-                Title descending
-              </MenuItem>
-              <MenuItem value="ascendingp" onClick={setFilterPriceAscending}>
-                Price ascending
-              </MenuItem>
-              <MenuItem value="descendingp" onClick={setFilterPriceDescending}>
-                Price descending
-              </MenuItem>
-            </div>
-          )}
-        </Select>
+        {isAdminPage && (
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="filter"
+            sx={{ color: "white" }}
+            onChange={handleChange}
+            value={sort}
+          >
+            <MenuItem value="ascendingTitle" onClick={setFilterTitleAscending}>
+              Title ascending
+            </MenuItem>
+            <MenuItem
+              value="descendingTitle"
+              onClick={setFilterTitleDescending}
+            >
+              Title descending
+            </MenuItem>
+            <MenuItem value="ascendingPrice" onClick={setFilterPriceAscending}>
+              Price ascending
+            </MenuItem>
+            <MenuItem
+              value="descendingPrice"
+              onClick={setFilterPriceDescending}
+            >
+              Price descending
+            </MenuItem>
+          </Select>
+        )}
+        {!isAdminPage && (
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="filter"
+            sx={{ color: "white" }}
+            onChange={handleChange}
+            value={sort}
+          >
+            <MenuItem value="ascendingDate" onClick={setFilterDateAscending}>
+              Date ascending
+            </MenuItem>
+            <MenuItem value="descendingDate" onClick={setFilterDateDescending}>
+              Date descending
+            </MenuItem>
+          </Select>
+        )}
       </FormControl>
     </Box>
   );

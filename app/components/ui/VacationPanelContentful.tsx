@@ -3,8 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { VacationPanelProps } from "../../types";
 
-
-
 const VacationPanel = ({ item }: VacationPanelProps) => {
   return (
     <div className="vacation-panel">
