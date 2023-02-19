@@ -34,6 +34,9 @@ const QueryAPI = () => {
       onSuccess(data) {
         setFilters(data);
       },
+      onError(error) {
+        console.log(error);
+      },
     }
   );
 
