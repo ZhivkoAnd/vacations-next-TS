@@ -32,9 +32,9 @@ export interface Vacations {
             url: string;
           };
         };
-      };
+      }[];
     };
-  };
+  }[];
 }
 
 export interface VacationPanelProps {
