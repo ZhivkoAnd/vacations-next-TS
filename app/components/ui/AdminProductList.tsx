@@ -1,7 +1,7 @@
 import React from "react";
 import { Product } from "../../types";
 
-const AdminProductList = ({ data }: any) => {
+const AdminProductList = ({ data, remove }: any) => {
   return (
     <div>
       <table className="table table-striped table-light">
@@ -17,6 +17,7 @@ const AdminProductList = ({ data }: any) => {
               <tr key={city.id}>
                 <th scope="row">{city.title}</th>
                 <td>{city.price}</td>
+                <button onClick={() => remove(city.id)}>X</button>
               </tr>
             );
           })}

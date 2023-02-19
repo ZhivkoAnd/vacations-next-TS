@@ -47,6 +47,10 @@ const QueryAPI = () => {
     return response.json();
   };
 
+  const remove = (id: number) => {
+    console.log(id);
+  };
+
   const [filterss, setFilters] = useState(data?.cities);
 
   const { mutateAsync } = useMutation(createData, {
@@ -128,7 +132,7 @@ const QueryAPI = () => {
         setFilterTitleDescending={setFilterTitleDescending}
         isAdminPage
       />
-      <AdminProductList data={filterss} />
+      <AdminProductList data={filterss} remove={remove} />
       <h1>Add new vacation</h1>
       <form className="container" onSubmit={handleSubmit}>
         <div className="form-group">
