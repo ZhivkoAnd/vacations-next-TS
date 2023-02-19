@@ -118,10 +118,6 @@ const QueryAPI = () => {
     }
   }, [inputQuery]);
 
-  // const removeProduct = async (id: number) => {
-  //   await mutateAsync(id);
-  // };
-
   if (isLoading) {
     return (
       <ThreeDots
