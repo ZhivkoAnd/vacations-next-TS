@@ -20,15 +20,20 @@ const QueryAPI = () => {
   const queryClient = useQueryClient();
 
   const fetchBookingQuery = async () => {
+    // We receive the response from the server
     const response = await fetch("http://localhost:3000/api");
     return response.json();
   };
 
-  const fetchBookings = useQuery(["bookings"], fetchBookingQuery, {
-    onSuccess(data) {
-      setFilters(data.cities);
-    },
-  });
+  const { data, isLoading, isError } = useQuery(
+    ["bookings"],
+    fetchBookingQuery,
+    {
+      onSuccess(data) {
+        setFilters(data.cities);
+      },
+    }
+  );
 
   const createData = async (data: {}) => {
     const response = await fetch("http://localhost:3000/api", {
@@ -41,7 +46,7 @@ const QueryAPI = () => {
     return response.json();
   };
 
-  const [filterss, setFilters] = useState(fetchBookings.data?.cities);
+  const [filterss, setFilters] = useState(data?.cities);
 
   const newMutation = useMutation(createData, {
     onSuccess: (data) => {
@@ -56,7 +61,7 @@ const QueryAPI = () => {
     queryClient.invalidateQueries(["bookings"]);
   };
 
-  const inputData = fetchBookings.data?.cities.filter((city: any) =>
+  const inputData = data?.cities.filter((city: any) =>
     city.title.toLowerCase().includes(inputQuery.toLowerCase())
   );
 
@@ -96,11 +101,11 @@ const QueryAPI = () => {
   //   await mutateAsync(id);
   // };
 
-  if (fetchBookings.isLoading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (fetchBookings.isError) {
+  if (isError) {
     return <div>There was an error</div>;
   }
 
