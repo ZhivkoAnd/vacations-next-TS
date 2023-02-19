@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AdminProductList from "../components/ui/AdminProductList";
 import ActionBar from "../components/ui/ActionBar";
@@ -13,10 +13,11 @@ import {
 import { ThreeDots } from "react-loader-spinner";
 
 const QueryAPI = () => {
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
   const [inputQuery, setInputQuery] = useState("");
+
+  const titleRef: any = useRef("");
+  const priceRef: any = useRef("");
+  const imageRef: any = useRef("");
 
   const queryClient = useQueryClient();
 
@@ -76,9 +77,13 @@ const QueryAPI = () => {
     },
   });
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
-    await createMutate({ title, price, image });
+    createMutate({
+      title: titleRef.current.value,
+      price: priceRef.current.value,
+      image: imageRef.current.value,
+    });
     queryClient.invalidateQueries(["bookings"]);
   };
 
@@ -109,6 +114,8 @@ const QueryAPI = () => {
       setFilters(filterTitleDescending(inputData));
     }
   };
+
+  console.log("hello");
 
   useEffect(() => {
     if (inputData && inputData.length) {
@@ -149,28 +156,15 @@ const QueryAPI = () => {
       <form className="container" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Title</label>
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="form-control"
-          ></input>
+          <input ref={titleRef} className="form-control"></input>
         </div>
         <div className="form-group">
           <label>Price</label>
-          <input
-            value={price}
-            type="number"
-            onChange={(e) => setPrice(e.target.value)}
-            className="form-control"
-          ></input>
+          <input ref={priceRef} type="number" className="form-control"></input>
         </div>
         <div className="form-group">
           <label>Image</label>
-          <input
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-            className="form-control"
-          ></input>
+          <input ref={imageRef} className="form-control"></input>
         </div>
         <button type="submit">Add vacation</button>
       </form>
