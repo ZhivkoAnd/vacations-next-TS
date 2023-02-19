@@ -10,6 +10,7 @@ import {
   filterTitleAscending,
   filterTitleDescending,
 } from "../components/utils/FilterFunctions";
+import { ThreeDots } from "react-loader-spinner";
 
 const QueryAPI = () => {
   const [title, setTitle] = useState("");
@@ -48,7 +49,7 @@ const QueryAPI = () => {
 
   const [filterss, setFilters] = useState(data?.cities);
 
-  const newMutation = useMutation(createData, {
+  const { mutateAsync } = useMutation(createData, {
     onSuccess: (data) => {
       console.log("Success!", data);
     },
@@ -57,7 +58,7 @@ const QueryAPI = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     const data = { title, price, image };
-    await newMutation.mutateAsync(data);
+    await mutateAsync(data);
     queryClient.invalidateQueries(["bookings"]);
   };
 
@@ -102,7 +103,14 @@ const QueryAPI = () => {
   // };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <ThreeDots
+        height="30"
+        color="#ccc"
+        ariaLabel="three-dots-loading"
+        visible={true}
+      />
+    );
   }
 
   if (isError) {
@@ -148,9 +156,7 @@ const QueryAPI = () => {
             className="form-control"
           ></input>
         </div>
-        <button type="submit" disabled={newMutation.isLoading}>
-          Add vacation
-        </button>
+        <button type="submit">Add vacation</button>
       </form>
     </div>
   );
