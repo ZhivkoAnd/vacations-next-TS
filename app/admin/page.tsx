@@ -22,7 +22,7 @@ const QueryAPI = () => {
 
   const fetchBookingQuery = async () => {
     // We receive the response from the server
-    const response = await fetch("http://localhost:3000/api");
+    const response = await fetch("http://localhost:4000/cities");
     return response.json();
   };
 
@@ -31,13 +31,13 @@ const QueryAPI = () => {
     fetchBookingQuery,
     {
       onSuccess(data) {
-        setFilters(data.cities);
+        setFilters(data);
       },
     }
   );
 
   const createData = async (data: {}) => {
-    const response = await fetch("http://localhost:3000/api", {
+    const response = await fetch("http://localhost:4000/cities", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const QueryAPI = () => {
     console.log(id);
   };
 
-  const [filterss, setFilters] = useState(data?.cities);
+  const [filterss, setFilters] = useState(data);
 
   const { mutateAsync } = useMutation(createData, {
     onSuccess: (data) => {
@@ -66,7 +66,7 @@ const QueryAPI = () => {
     queryClient.invalidateQueries(["bookings"]);
   };
 
-  const inputData = data?.cities.filter((city: any) =>
+  const inputData = data?.filter((city: any) =>
     city.title.toLowerCase().includes(inputQuery.toLowerCase())
   );
 

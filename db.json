@@ -23,12 +23,6 @@
       "title": "Test again",
       "price": "123",
       "image": "123"
-    },
-    {
-      "id": 5,
-      "title": "Hello",
-      "price": "123",
-      "image": "123"
     }
   ]
 }
