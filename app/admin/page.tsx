@@ -47,13 +47,30 @@ const QueryAPI = () => {
     return response.json();
   };
 
-  const remove = (id: number) => {
-    console.log(id);
+  const deleteData = async (id: number) => {
+    const response = await fetch(`http://localhost:4000/cities/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error();
+    }
+    return true;
+  };
+
+  const { mutateAsync: deleteMutate } = useMutation(deleteData, {
+    onSuccess: (data) => {
+      console.log("Success!", data);
+    },
+  });
+
+  const remove = async (id: number) => {
+    await deleteMutate(id);
+    queryClient.invalidateQueries(["bookings"]);
   };
 
   const [filterss, setFilters] = useState(data);
 
-  const { mutateAsync } = useMutation(createData, {
+  const { mutateAsync: createMutate } = useMutation(createData, {
     onSuccess: (data) => {
       console.log("Success!", data);
     },
@@ -61,8 +78,7 @@ const QueryAPI = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const data = { title, price, image };
-    await mutateAsync(data);
+    await createMutate({ title, price, image });
     queryClient.invalidateQueries(["bookings"]);
   };
 

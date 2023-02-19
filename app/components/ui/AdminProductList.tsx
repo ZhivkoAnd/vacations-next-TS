@@ -16,8 +16,10 @@ const AdminProductList = ({ data, remove }: any) => {
             return (
               <tr key={city.id}>
                 <th scope="row">{city.title}</th>
-                <td>{city.price}</td>
-                <button onClick={() => remove(city.id)}>X</button>
+                <td>
+                  {city.price}
+                  <button onClick={() => remove(city.id)}>X</button>
+                </td>
               </tr>
             );
           })}
