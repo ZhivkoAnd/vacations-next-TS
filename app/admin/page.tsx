@@ -64,21 +64,20 @@ const QueryAPI = () => {
 
   const { mutateAsync: deleteMutate, isLoading: isLoadingDeletedElement } =
     useMutation(deleteData, {
-      onSuccess: (data) => {
-        console.log("Success!", data);
+      onSettled: (data) => {
+        queryClient.invalidateQueries(["bookings"]);
       },
     });
 
   const remove = async (id: number) => {
     await deleteMutate(id);
-    queryClient.invalidateQueries(["bookings"]);
   };
 
   const [filterss, setFilters] = useState(data);
 
   const { mutateAsync: createMutate } = useMutation(createData, {
-    onSuccess: (data) => {
-      console.log("Success!", data);
+    onSettled: (data) => {
+      queryClient.invalidateQueries(["bookings"]);
     },
   });
 
@@ -89,7 +88,6 @@ const QueryAPI = () => {
       price: priceRef.current.value,
       image: imageRef.current.value,
     });
-    queryClient.invalidateQueries(["bookings"]);
   };
 
   const inputData = data?.filter((city: any) =>
