@@ -11,6 +11,7 @@ import {
   filterTitleDescending,
 } from "../components/utils/FilterFunctions";
 import { ThreeDots } from "react-loader-spinner";
+import ErrorUI from '../components/ui/ErrorUI'
 
 const QueryAPI = () => {
   const [inputQuery, setInputQuery] = useState("");
@@ -140,7 +141,7 @@ const QueryAPI = () => {
   }
 
   if (isError) {
-    return <div>There was an error</div>;
+    return <ErrorUI/>;
   }
 
   return (
