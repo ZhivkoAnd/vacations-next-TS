@@ -10,7 +10,7 @@ import {
   filterTitleAscending,
   filterTitleDescending,
 } from "../components/utils/FilterFunctions";
-import { ThreeDots } from "react-loader-spinner";
+import LoadingSpinners from "../components/ui/LoadingSpinners";
 import ErrorUI from '../components/ui/ErrorUI'
 
 const QueryAPI = () => {
@@ -131,12 +131,7 @@ const QueryAPI = () => {
 
   if (isLoading) {
     return (
-      <ThreeDots
-        height="30"
-        color="#ccc"
-        ariaLabel="three-dots-loading"
-        visible={true}
-      />
+     <LoadingSpinners three_Dots/>
     );
   }
 
