@@ -11,7 +11,7 @@ import {
   filterTitleDescending,
 } from "../components/utils/FilterFunctions";
 import LoadingSpinners from "../components/ui/LoadingSpinners";
-import ErrorUI from '../components/ui/ErrorUI'
+import ErrorUI from "../components/ui/ErrorUI";
 
 const QueryAPI = () => {
   const [inputQuery, setInputQuery] = useState("");
@@ -62,11 +62,12 @@ const QueryAPI = () => {
     return true;
   };
 
-  const { mutateAsync: deleteMutate, isLoading: isLoadingDeletedElement } = useMutation(deleteData, {
-    onSuccess: (data) => {
-      console.log("Success!", data);
-    },
-  });
+  const { mutateAsync: deleteMutate, isLoading: isLoadingDeletedElement } =
+    useMutation(deleteData, {
+      onSuccess: (data) => {
+        console.log("Success!", data);
+      },
+    });
 
   const remove = async (id: number) => {
     await deleteMutate(id);
@@ -130,13 +131,11 @@ const QueryAPI = () => {
   }, [inputQuery]);
 
   if (isLoading) {
-    return (
-     <LoadingSpinners magnifying_glass/>
-    );
+    return <LoadingSpinners magnifying_glass />;
   }
 
   if (isError) {
-    return <ErrorUI/>;
+    return <ErrorUI />;
   }
 
   return (
@@ -150,7 +149,11 @@ const QueryAPI = () => {
         setFilterTitleDescending={setFilterTitleDescending}
         isAdminPage
       />
-      <AdminProductList data={filterss} remove={remove} isLoadingDeletedElement = {isLoadingDeletedElement}/>
+      <AdminProductList
+        data={filterss}
+        remove={remove}
+        isLoadingDeletedElement={isLoadingDeletedElement}
+      />
       <h1>Add new vacation</h1>
       <form className="container" onSubmit={handleSubmit}>
         <div className="form-group">
