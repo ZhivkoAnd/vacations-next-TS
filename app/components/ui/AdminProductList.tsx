@@ -1,7 +1,16 @@
 import React from "react";
 import { Product } from "../../types";
+import LoadingSpinners from "../../components/ui/LoadingSpinners";
 
-const AdminProductList = ({ data, remove }: any) => {
+
+interface AdminProductList {
+  data: any
+  remove: (id: number) => void
+  isLoadingDeletedElement: boolean
+}
+
+const AdminProductList = ({ data, remove, isLoadingDeletedElement }: AdminProductList) => {
+
   return (
     <div>
       <table className="table table-striped table-light">
@@ -18,7 +27,7 @@ const AdminProductList = ({ data, remove }: any) => {
                 <th scope="row">{city.title}</th>
                 <td>
                   {city.price}
-                  <button onClick={() => remove(city.id)}>X</button>
+                  <button onClick={() => remove(city.id)}>{isLoadingDeletedElement? <LoadingSpinners three_dots/> : "Delete"}</button>
                 </td>
               </tr>
             );

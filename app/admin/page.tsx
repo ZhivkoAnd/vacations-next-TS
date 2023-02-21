@@ -62,7 +62,7 @@ const QueryAPI = () => {
     return true;
   };
 
-  const { mutateAsync: deleteMutate } = useMutation(deleteData, {
+  const { mutateAsync: deleteMutate, isLoading: isLoadingDeletedElement } = useMutation(deleteData, {
     onSuccess: (data) => {
       console.log("Success!", data);
     },
@@ -150,7 +150,7 @@ const QueryAPI = () => {
         setFilterTitleDescending={setFilterTitleDescending}
         isAdminPage
       />
-      <AdminProductList data={filterss} remove={remove} />
+      <AdminProductList data={filterss} remove={remove} isLoadingDeletedElement = {isLoadingDeletedElement}/>
       <h1>Add new vacation</h1>
       <form className="container" onSubmit={handleSubmit}>
         <div className="form-group">
