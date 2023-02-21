@@ -131,7 +131,7 @@ const QueryAPI = () => {
 
   if (isLoading) {
     return (
-     <LoadingSpinners three_Dots/>
+     <LoadingSpinners magnifying_glass/>
     );
   }
 
